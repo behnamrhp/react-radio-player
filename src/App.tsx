@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import RadioBottomBarPlayer from '../lib/component/radio-bottom-bar-player'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -9,9 +9,6 @@ function App() {
   return (
     <>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
         <a href="https://react.dev" target="_blank">
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
@@ -28,6 +25,22 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      <div style={{
+        position: "fixed",
+        bottom: 0,
+        zIndex: 100,
+        left: 0,
+        width: "97vw",
+      }}>
+
+        <RadioBottomBarPlayer 
+          image="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Test-Logo.svg/1200px-Test-Logo.svg.png" 
+          streamUrl='asdf' 
+          title='test title' 
+          description='description'
+          secondDescription='asdf'
+        />
+      </div>
     </>
   )
 }

@@ -4,6 +4,9 @@
   padding: 2rem;
   text-align: center;
 }
+body {
+  background-color: #838383;
+}
 
 .logo {
   height: 6em;
@@ -35,8 +38,4 @@
 
 .card {
   padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }
