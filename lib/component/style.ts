@@ -1,6 +1,8 @@
 import styled, { css } from "styled-components";
 import Next from "./icons/next";
+import Slider from 'rc-slider';
 
+const primaryColor = '#f0f0f0'
 export const StyledContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -38,7 +40,7 @@ export const StyledTextContainer = styled.div`
 `
 
 export const firstColor = css`
-  color: #f0f0f0;
+  color: ${primaryColor};
 
 `
 
@@ -104,4 +106,41 @@ export const StyledVolumeContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: .7rem;
+  
+  &:hover .rc-slider-handle {
+    opacity: 1;
+  }
+`
+
+export const VolumeIconContainer = styled.div`
+  width: 1.5rem;
+  height: 1.5rem;
+`
+
+export const StyledSlider = styled(Slider)`
+  & .rc-slider-handle {
+    opacity: 0;
+    cursor: pointer;
+    transition: all .1s;
+    border-color: ${primaryColor};
+  }
+
+  & .rc-slider-handle:active {
+    border-color: ${primaryColor};
+  }
+
+  & .rc-slider-handle-dragging {
+    box-shadow: none;
+    border-color: ${primaryColor};
+  }
+
+  & .rc-slider-rail {
+    background-color: #525151;
+  }
+
+  & .rc-slider-track {
+    background-color: ${primaryColor};
+  }
+  
 `

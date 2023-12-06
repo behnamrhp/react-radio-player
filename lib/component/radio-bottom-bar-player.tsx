@@ -1,14 +1,16 @@
 import IRadioBottomBarPorps from "./i-props";
 import Next from "./icons/next";
 import Pause from "./icons/pause";
-import { ImageWrapper, InfoContainer, StyledButtonContainer, StyledContainer, StyledDescription, StyledImage, StyledPlayPause, StyledPrev, StyledPrevNext, StyledSecondDesc, StyledTextContainer, StyledTitle, StyledVolumeContainer } from "./style";
+import { ImageWrapper, InfoContainer, StyledButtonContainer, StyledContainer, StyledDescription, StyledImage, StyledPlayPause, StyledPrev, StyledPrevNext, StyledSecondDesc, StyledSlider, StyledTextContainer, StyledTitle, StyledVolumeContainer, VolumeIconContainer } from "./style";
 import './general.css'
-import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
+import VolumeMedium from "./icons/volume-medium";
+import { useUILogic } from "../logic/ui-logic";
+import PlayIcon from "./icons/play";
 
 export default function RadioBottomBarPlayer(props: IRadioBottomBarPorps) {
   const { 
-    // streamUrl, 
+    streamUrl, 
     title, 
     className, 
     description, 
@@ -21,6 +23,7 @@ export default function RadioBottomBarPlayer(props: IRadioBottomBarPorps) {
     // theme
   } = props;
 
+  const {isPlay, onClickPlayToggler} = useUILogic(streamUrl)
   const defaultImage = image || 'test Image' 
   return (
     <StyledContainer className={className}>
@@ -44,15 +47,26 @@ export default function RadioBottomBarPlayer(props: IRadioBottomBarPorps) {
         <StyledPrevNext>
           <StyledPrev />
         </StyledPrevNext>
-        <StyledPlayPause>
-          <Pause />
+        <StyledPlayPause onClick={() => {
+          onClickPlayToggler()
+        }}>
+          {isPlay ?  <Pause /> : <PlayIcon /> }
         </StyledPlayPause>
         <StyledPrevNext>
           <Next />
         </StyledPrevNext>
       </StyledButtonContainer>
         <StyledVolumeContainer>
-          <Slider  min={0} max={100}/>
+          <VolumeIconContainer>
+            <VolumeMedium />
+          </VolumeIconContainer>
+          <StyledSlider
+           onChange={(value) => {
+            console.log('value', value)
+            }}
+              min={0}
+               max={100}
+               />
         </StyledVolumeContainer>
     </StyledContainer>
   )

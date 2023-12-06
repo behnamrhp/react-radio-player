@@ -30,12 +30,12 @@ function App() {
         bottom: 0,
         zIndex: 100,
         left: 0,
-        width: "97vw",
+        width: "98vw",
       }}>
 
         <RadioBottomBarPlayer 
           image="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Test-Logo.svg/1200px-Test-Logo.svg.png" 
-          streamUrl='asdf' 
+          streamUrl='http://91.223.70.109:8000/radio.mp3' 
           title='test title' 
           description='description'
           secondDescription='asdf'
