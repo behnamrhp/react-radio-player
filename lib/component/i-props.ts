@@ -23,5 +23,6 @@ export default interface IRadioBottomBarPorps {
   theme?: Partial<Theme>;
   onNextButtonClicked?(event: React.MouseEvent): void;
   onPrevButtonClicked?(event: React.MouseEvent): void;
+  onPlayButtonClicked?(event: React.MouseEvent): void;
   onVolumeSliderChanged?(percentage: number): void;
 }

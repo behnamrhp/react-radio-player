@@ -4,9 +4,9 @@ import Pause from "./icons/pause";
 import { ImageWrapper, InfoContainer, StyledButtonContainer, StyledContainer, StyledDescription, StyledImage, StyledPlayPause, StyledPrev, StyledPrevNext, StyledSecondDesc, StyledSlider, StyledTextContainer, StyledTitle, StyledVolumeContainer, VolumeIconContainer } from "./style";
 import './general.css'
 import 'rc-slider/assets/index.css';
-import VolumeMedium from "./icons/volume-medium";
 import { useUILogic } from "../logic/ui-logic";
 import PlayIcon from "./icons/play";
+import Volume from "./children/Volume";
 
 export default function RadioBottomBarPlayer(props: IRadioBottomBarPorps) {
   const { 
@@ -16,15 +16,16 @@ export default function RadioBottomBarPlayer(props: IRadioBottomBarPorps) {
     description, 
     secondDescription,
     image, 
-    // onNextButtonClicked, 
-    // onPrevButtonClicked, 
-    // onVolumeSliderChanged, 
-    // styles, 
-    // theme
+    onNextButtonClicked, 
+    onPrevButtonClicked, 
+    onVolumeSliderChanged, 
+    onPlayButtonClicked,
   } = props;
 
-  const {isPlay, onClickPlayToggler} = useUILogic(streamUrl)
+  const {isPlay, onClickPlayToggler, onChangeVolume, volume} = useUILogic(streamUrl)
   const defaultImage = image || 'test Image' 
+
+
   return (
     <StyledContainer className={className}>
       <InfoContainer>
@@ -44,29 +45,33 @@ export default function RadioBottomBarPlayer(props: IRadioBottomBarPorps) {
         </StyledTextContainer>
       </InfoContainer>
       <StyledButtonContainer>
-        <StyledPrevNext>
+        <StyledPrevNext onClick={onPrevButtonClicked}>
           <StyledPrev />
         </StyledPrevNext>
-        <StyledPlayPause onClick={() => {
+        <StyledPlayPause onClick={(event) => {
           onClickPlayToggler()
+          if (onPlayButtonClicked) onPlayButtonClicked(event)
         }}>
           {isPlay ?  <Pause /> : <PlayIcon /> }
         </StyledPlayPause>
-        <StyledPrevNext>
+        <StyledPrevNext onClick={onNextButtonClicked}>
           <Next />
         </StyledPrevNext>
       </StyledButtonContainer>
         <StyledVolumeContainer>
           <VolumeIconContainer>
-            <VolumeMedium />
+            <Volume volume={volume} />
           </VolumeIconContainer>
           <StyledSlider
-           onChange={(value) => {
-            console.log('value', value)
+            value={volume}
+            onChange={(value) => {
+              onChangeVolume(value as number)
+              if (onVolumeSliderChanged) onVolumeSliderChanged(value as number)
             }}
-              min={0}
-               max={100}
-               />
+            min={0}
+            max={100}
+            step={1}
+          />
         </StyledVolumeContainer>
     </StyledContainer>
   )

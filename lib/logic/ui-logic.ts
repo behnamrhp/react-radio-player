@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react"
 export const useUILogic = (streamUrl: string) => {
   const [isPlay, setIsPlay] = useState(false);
   const audioRef = useRef(new Audio(streamUrl))
+  const [volume, setVolume] = useState(50)
 
   // clear audio on onmount
   useEffect(() => {
@@ -11,6 +12,11 @@ export const useUILogic = (streamUrl: string) => {
       savedAudio.pause()
     }
   }, [])
+
+  // change volume
+  useEffect(() => {
+    audioRef.current.volume = volume / 100;
+  }, [volume])
 
   // chage audio play state
   useEffect(() => {
@@ -21,8 +27,14 @@ export const useUILogic = (streamUrl: string) => {
     setIsPlay((prev) => !prev)
   }
 
+  const onChangeVolume = (value: number) => {
+    setVolume(value)
+  }
+
   return {
     isPlay,
+    volume,
     onClickPlayToggler,
+    onChangeVolume
   }
 }
