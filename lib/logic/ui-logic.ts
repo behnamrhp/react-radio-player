@@ -6,8 +6,9 @@ export const useUILogic = (streamUrl: string) => {
 
   // clear audio on onmount
   useEffect(() => {
+    const savedAudio = audioRef.current
     return () => {
-      audioRef.current.pause()
+      savedAudio.pause()
     }
   }, [])
 
