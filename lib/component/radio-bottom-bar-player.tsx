@@ -20,9 +20,10 @@ export default function RadioBottomBarPlayer(props: IRadioBottomBarPorps) {
     onPrevButtonClicked, 
     onVolumeSliderChanged, 
     onPlayButtonClicked,
+    onErrorCatched,
   } = props;
 
-  const {isPlay, onClickPlayToggler, onChangeVolume, volume} = useUILogic(streamUrl)
+  const {isPlay, onClickPlayToggler, onChangeVolume, volume, isDisabled} = useUILogic(streamUrl, onErrorCatched)
   const defaultImage = image || 'test Image' 
 
 
@@ -48,7 +49,8 @@ export default function RadioBottomBarPlayer(props: IRadioBottomBarPorps) {
         <StyledPrevNext onClick={onPrevButtonClicked}>
           <StyledPrev />
         </StyledPrevNext>
-        <StyledPlayPause onClick={(event) => {
+        <StyledPlayPause $isDisabled={isDisabled} onClick={(event) => {
+          if (isDisabled) return;
           onClickPlayToggler()
           if (onPlayButtonClicked) onPlayButtonClicked(event)
         }}>

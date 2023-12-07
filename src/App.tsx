@@ -39,6 +39,9 @@ function App() {
           title='test title' 
           description='description'
           secondDescription='asdf'
+          onErrorCatched={(error) => {
+            console.log('our errrorr is:', error)
+          }}
         />
       </div>
     </>

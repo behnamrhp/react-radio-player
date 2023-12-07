@@ -3,6 +3,8 @@ import Next from "./icons/next";
 import Slider from 'rc-slider';
 
 const primaryColor = '#f0f0f0'
+
+const disabledColor = '#797979';
 export const StyledContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -94,8 +96,14 @@ ${StyledButton};
   width: 2rem;
 `
 
-export const StyledPlayPause = styled.button`
+export const StyledPlayPause = styled.button<{$isDisabled: boolean}>`
 ${StyledButton};
+  color: ${(props) => props.$isDisabled ? disabledColor : firstColor };
+
+  &:hover{
+    color: ${(props) => props.$isDisabled ? disabledColor : firstColor };
+    cursor: ${(props) => props.$isDisabled ? 'auto' : 'pointer' } !important;
+  }
   height: 3.56rem;
   width: 3.18rem;
 `
