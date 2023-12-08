@@ -13,6 +13,7 @@ export type Theme = {
   volumeTrackColor: string;
   voluemHandleColor: string;
   volumeRailColor: string;
+  volumeIconColor: string;
 }
 export default interface IRadioBottomBarPorps {
   streamUrl: string;

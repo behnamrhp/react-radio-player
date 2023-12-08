@@ -44,7 +44,8 @@ function App() {
           theme={{
             volumeRailColor: 'red',
             voluemHandleColor: 'blue',
-            volumeTrackColor: 'blue'
+            volumeTrackColor: 'blue',
+            volumeIconColor: 'red'
           }}
         />
       </div>
