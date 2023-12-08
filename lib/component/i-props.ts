@@ -5,12 +5,14 @@ export type Theme = {
   fontFamily: string;
   fontSize: string;
   fontWeight: string;
-  buttonColor: string;
+  buttonsColor: string;
   firstTextColor: string;
   secondTextColor: string;
-  paddingX: string;
-  paddingY: string;
+  padding: string;
   height: number;
+  volumeTrackColor: string;
+  voluemHandleColor: string;
+  volumeRailColor: string;
 }
 export default interface IRadioBottomBarPorps {
   streamUrl: string;

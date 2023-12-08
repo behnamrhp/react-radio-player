@@ -41,6 +41,11 @@ function App() {
           onErrorCatched={(error) => {
             console.log('our errrorr is:', error)
           }}
+          theme={{
+            volumeRailColor: 'red',
+            voluemHandleColor: 'blue',
+            volumeTrackColor: 'blue'
+          }}
         />
       </div>
     </>

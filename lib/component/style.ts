@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import Next from "./icons/next";
 import Slider from 'rc-slider';
+import { type Theme } from "./i-props";
 
 const primaryColor = '#f0f0f0'
 
@@ -9,11 +10,11 @@ export const StyledContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: .9rem;
-  background: linear-gradient(90deg, #424141 0%, #302F30 52.63%, #42413F 85.53%, #2F2E2C 105.26%);
+  padding: ${({theme}) => theme?.padding ? theme.padding : '0.9rem'};
+  background: ${({theme}) => theme?.backgroundColor ? theme.backgroundColor : 'linear-gradient(90deg, #424141 0%, #302F30 52.63%, #42413F 85.53%, #2F2E2C 105.26%)'};
   width: 100%;
   min-height: 4.5rem;
-  height: 100%;
+  height: ${({theme}) => theme?.height ? theme.height : '100%'};
 `
 
 export const InfoContainer = styled.div`
@@ -53,13 +54,18 @@ export const StyledTextContainer = styled.div`
 `
 
 export const firstColor = css`
-  color: ${primaryColor};
+  color: ${({theme}) => theme?.firstTextColor ? theme.firstTextColor : primaryColor};
 
 `
 
 
+export const ButtonColor = css`
+  color: ${({theme}) => theme?.buttonsColor ? theme.buttonsColor : primaryColor};
+
+`
+
 export const secondColor = css`
-  color: #9595A3
+  color: ${({theme}) => theme?.firstTextColor ? theme.secondTextColor : '#9595A3'};
 `
 
 export const StyledTitle = styled.div`
@@ -71,6 +77,7 @@ export const StyledTitle = styled.div`
 `
 
 export const StyledPrev = styled(Next)`
+  ${ButtonColor};
   transform: rotate(180deg);
 `
 
@@ -106,7 +113,7 @@ export const StyledButton = css`
   background-color: transparent;
   outline: none !important;
   border: none;
-  ${firstColor};
+  ${ButtonColor};
   transition: all .2s;
   &:hover{
     cursor: pointer;
@@ -119,7 +126,7 @@ ${StyledButton};
   width: 2rem;
 `
 
-export const StyledPlayPause = styled.button<{$isDisabled: boolean}>`
+export const StyledPlayPause = styled.button<{$isDisabled: boolean, theme?: Partial<Theme>}>`
 ${StyledButton};
   color: ${(props) => props.$isDisabled ? disabledColor : firstColor };
 
@@ -154,24 +161,23 @@ export const StyledSlider = styled(Slider)`
     opacity: 0;
     cursor: pointer;
     transition: all .1s;
-    border-color: ${primaryColor};
+    border-color: ${({theme}) => theme?.voluemHandleColor ? theme.voluemHandleColor : primaryColor};
   }
 
   & .rc-slider-handle:active {
-    border-color: ${primaryColor};
+    border-color: ${({theme}) => theme?.voluemHandleColor ? theme.voluemHandleColor : primaryColor};
   }
 
   & .rc-slider-handle-dragging {
     box-shadow: none;
-    border-color: ${primaryColor};
+    border-color: ${({theme}) => theme?.voluemHandleColor ? theme.voluemHandleColor : primaryColor};
   }
 
   & .rc-slider-rail {
-    background-color: #525151;
+    background-color: ${({theme}) => theme?.volumeRailColor ? theme.volumeRailColor : '#525151'};
   }
 
   & .rc-slider-track {
-    background-color: ${primaryColor};
+    background-color: ${({theme}) => theme?.volumeTrackColor ? theme.volumeTrackColor : primaryColor};
   }
-  
 `
