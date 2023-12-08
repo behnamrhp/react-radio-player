@@ -147,7 +147,8 @@ ${StyledButton};
     height: 2.9rem;
     width: 2.7rem;
   }
-  
+  height: 3.56rem;
+  width: 3.18rem;
 `
 
 export const StyledVolumeContainer = styled.div`
