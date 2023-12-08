@@ -17,9 +17,14 @@ export const StyledContainer = styled.div`
 
 export const InfoContainer = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   gap: .9rem;
+  max-width: 30%;
+  min-width: 10rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `
 
 export const ImageWrapper = styled.div`
@@ -42,6 +47,8 @@ export const StyledTextContainer = styled.div`
   flex-direction: column;
   justify-content: start;
   align-items: start;
+  flex: 1;
+  width: 50%;
 `
 
 export const firstColor = css`
@@ -56,6 +63,10 @@ export const secondColor = css`
 
 export const StyledTitle = styled.div`
   ${firstColor}
+  text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
 `
 
 export const StyledPrev = styled(Next)`
@@ -63,7 +74,11 @@ export const StyledPrev = styled(Next)`
 `
 
 export const StyledDescription = styled.div`
-  ${secondColor}
+  ${secondColor};
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
 `;
 
 
@@ -79,6 +94,10 @@ export const StyledSecondDesc = styled.div`
   ${secondColor};
   margin-top: auto;
   padding-bottom: 5px;
+  text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
 `
 
 export const StyledButton = css`

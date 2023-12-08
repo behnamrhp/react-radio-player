@@ -3,7 +3,6 @@ import Next from "./icons/next";
 import Pause from "./icons/pause";
 import { ImageWrapper, InfoContainer, StyledButtonContainer, StyledContainer, StyledDescription, StyledImage, StyledPlayPause, StyledPrev, StyledPrevNext, StyledSecondDesc, StyledSlider, StyledTextContainer, StyledTitle, StyledVolumeContainer, VolumeIconContainer } from "./style";
 import './general.css'
-import 'rc-slider/assets/index.css';
 import { useUILogic } from "../logic/ui-logic";
 import PlayIcon from "./icons/play";
 import Volume from "./children/Volume";
