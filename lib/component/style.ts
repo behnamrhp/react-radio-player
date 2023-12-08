@@ -6,6 +6,7 @@ import { type Theme } from "./i-props";
 const primaryColor = '#f0f0f0'
 
 const disabledColor = '#797979';
+
 export const StyledContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -37,6 +38,10 @@ export const ImageWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 648px) {
+    display: none;
+  }
 `
 export const StyledImage = styled.img`
   object-fit: cover;
@@ -55,13 +60,11 @@ export const StyledTextContainer = styled.div`
 
 export const firstColor = css`
   color: ${({theme}) => theme?.firstTextColor ? theme.firstTextColor : primaryColor};
-
 `
 
 
 export const ButtonColor = css`
   color: ${({theme}) => theme?.buttonsColor ? theme.buttonsColor : primaryColor};
-
 `
 
 export const secondColor = css`
@@ -124,6 +127,11 @@ export const StyledPrevNext = styled.button`
 ${StyledButton};
   height: 2rem;
   width: 2rem;
+
+  @media (max-width: 648px) {
+    height: 1.7rem;
+    width: 1.7rem;
+  }
 `
 
 export const StyledPlayPause = styled.button<{$isDisabled: boolean, theme?: Partial<Theme>}>`
@@ -134,8 +142,12 @@ ${StyledButton};
     color: ${(props) => props.$isDisabled ? disabledColor : firstColor };
     cursor: ${(props) => props.$isDisabled ? 'auto' : 'pointer' } !important;
   }
-  height: 3.56rem;
-  width: 3.18rem;
+
+  @media (max-width: 648px) {
+    height: 2.9rem;
+    width: 2.7rem;
+  }
+  
 `
 
 export const StyledVolumeContainer = styled.div`
@@ -145,9 +157,24 @@ export const StyledVolumeContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: .7rem;
-  
+  @media (max-width: 648px) {
+    display: none;
+  }
   &:hover .rc-slider-handle {
     opacity: 1;
+  }
+`
+
+export const StyledMobileVolumeContainer = styled.div`
+  min-width: 5rem;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: .5rem;
+  @media (min-width: 648px) {
+    display: none;
   }
 `
 
@@ -157,8 +184,17 @@ export const VolumeIconContainer = styled.div`
   color: ${({theme}) => theme?.volumeIconColor ? theme.volumeIconColor : primaryColor};
 `
 
-export const StyledSlider = styled(Slider)`
-  & .rc-slider-handle {
+export const VolumeIconMobileButton = styled.button`
+${StyledButton};
+  width: 1.5rem;
+  height: 1.5rem;
+  position: relative;
+  color: ${({theme}) => theme?.volumeIconColor ? theme.volumeIconColor : primaryColor};
+`
+
+const styledSliderCss = css`
+
+& .rc-slider-handle {
     opacity: 0;
     cursor: pointer;
     transition: all .1s;
@@ -180,5 +216,12 @@ export const StyledSlider = styled(Slider)`
 
   & .rc-slider-track {
     background-color: ${({theme}) => theme?.volumeTrackColor ? theme.volumeTrackColor : primaryColor};
+  }
+`
+
+export const StyledSlider = styled(Slider)`
+  ${styledSliderCss};
+  @media (max-width: 648px) {
+    display: none;
   }
 `

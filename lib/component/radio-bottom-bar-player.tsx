@@ -8,6 +8,7 @@ import PlayIcon from "./icons/play";
 import Volume from "./children/Volume";
 import Music from "./icons/music";
 import { ThemeProvider } from "styled-components";
+import 'rc-slider/assets/index.css';
 
 export default function RadioBottomBarPlayer(props: IRadioBottomBarPorps) {
   const { 
