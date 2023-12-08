@@ -12,7 +12,8 @@ export const StyledContainer = styled.div`
   padding: .9rem;
   background: linear-gradient(90deg, #424141 0%, #302F30 52.63%, #42413F 85.53%, #2F2E2C 105.26%);
   width: 100%;
-  height: 4.5rem;
+  min-height: 4.5rem;
+  height: 100%;
 `
 
 export const InfoContainer = styled.div`
