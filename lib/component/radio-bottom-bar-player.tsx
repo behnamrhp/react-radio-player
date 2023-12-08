@@ -7,6 +7,7 @@ import 'rc-slider/assets/index.css';
 import { useUILogic } from "../logic/ui-logic";
 import PlayIcon from "./icons/play";
 import Volume from "./children/Volume";
+import Music from "./icons/music";
 
 export default function RadioBottomBarPlayer(props: IRadioBottomBarPorps) {
   const { 
@@ -24,47 +25,51 @@ export default function RadioBottomBarPlayer(props: IRadioBottomBarPorps) {
   } = props;
 
   const {isPlay, onClickPlayToggler, onChangeVolume, volume, isDisabled} = useUILogic(streamUrl, onErrorCatched)
-  const defaultImage = image || 'test Image' 
-
+  const defaultImage = image || <Music />
 
   return (
-    <StyledContainer className={className}>
-      <InfoContainer>
-        <ImageWrapper >
-          { typeof image === 'string' ? <StyledImage src={image} /> : defaultImage }
+    <StyledContainer className={className?.container}>
+      <InfoContainer className={className?.infoContainer}>
+        <ImageWrapper className={className?.imageContainer}>
+          { typeof image === 'string' ? 
+            <StyledImage className={className?.image} src={image} /> 
+              : 
+            defaultImage 
+          }
         </ImageWrapper>
-        <StyledTextContainer>
-          <StyledTitle>
+        <StyledTextContainer className={className?.textsContainer}>
+          <StyledTitle className={className?.title}>
             {title}
           </StyledTitle>
-          <StyledDescription>
+          <StyledDescription className={className?.description}>
             {description}
           </StyledDescription>
-          <StyledSecondDesc>
+          <StyledSecondDesc className={className?.secondDescription}>
             {secondDescription}
           </StyledSecondDesc>
         </StyledTextContainer>
       </InfoContainer>
-      <StyledButtonContainer>
-        <StyledPrevNext onClick={onPrevButtonClicked}>
+      <StyledButtonContainer className={className?.playerButtonsContainer}>
+        <StyledPrevNext onClick={onPrevButtonClicked} className={className?.prevButton}>
           <StyledPrev />
         </StyledPrevNext>
-        <StyledPlayPause $isDisabled={isDisabled} onClick={(event) => {
+        <StyledPlayPause className={className?.playButton} $isDisabled={isDisabled} onClick={(event) => {
           if (isDisabled) return;
           onClickPlayToggler()
           if (onPlayButtonClicked) onPlayButtonClicked(event)
         }}>
           {isPlay ?  <Pause /> : <PlayIcon /> }
         </StyledPlayPause>
-        <StyledPrevNext onClick={onNextButtonClicked}>
+        <StyledPrevNext className={className?.prevButton} onClick={onNextButtonClicked}>
           <Next />
         </StyledPrevNext>
       </StyledButtonContainer>
-        <StyledVolumeContainer>
-          <VolumeIconContainer>
+        <StyledVolumeContainer className={className?.volumeContainer}>
+          <VolumeIconContainer className={className?.volumeIcon}>
             <Volume volume={volume} />
           </VolumeIconContainer>
           <StyledSlider
+            className={className?.volume}
             value={volume}
             onChange={(value) => {
               onChangeVolume(value as number)

@@ -17,7 +17,24 @@ export default interface IRadioBottomBarPorps {
   title: string;
   description?: string;
   secondDescription: string;
-  className?: string;
+  className?: {
+    container?: string;
+    infoContainer?: string;
+    imageContainer?: string;
+    image?: string;
+    textsContainer?: string;
+    title?: string;
+    description?: string;
+    secondDescription?: string;
+    player?: string;
+    playButton?: string;
+    prevButton?: string;
+    nextButton?: string;
+    volumeContainer?: string;
+    volume?: string;
+    volumeIcon?: string;
+    playerButtonsContainer?: string;
+  };
   image?: ReactNode | string;
   styles?: React.CSSProperties;
   theme?: Partial<Theme>;

@@ -27,6 +27,9 @@ export const ImageWrapper = styled.div`
   height: 4.5rem;
   border-radius: 8px;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `
 export const StyledImage = styled.img`
   object-fit: cover;
