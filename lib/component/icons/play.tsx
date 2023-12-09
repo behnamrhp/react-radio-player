@@ -3,9 +3,9 @@ export default function PlayIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="75%"
-      height="75%"
-      viewBox="-5 0 28 28"
+      width="100%"
+      height="100%"
+      viewBox="0 0 24 24"
     >
       <g fill="none" fillRule="evenodd" stroke="none" strokeWidth="1">
         <g fill="currentColor" transform="translate(-419 -571)">
