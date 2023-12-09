@@ -24,6 +24,10 @@ export default function RadioBottomBarPlayer(props: IRadioBottomBarPorps) {
     onPlayButtonClicked,
     onErrorCatched,
     theme,
+    isNextButtonHidden,
+    isPrevButtonHidden,
+    isNextButtonDisabled,
+    isPrevButtonDisabled,
   } = props;
 
   const {isPlay, onClickPlayToggler, onChangeVolume, volume, isDisabled} = useUILogic(streamUrl, onErrorCatched)
@@ -53,7 +57,15 @@ export default function RadioBottomBarPlayer(props: IRadioBottomBarPorps) {
           </StyledTextContainer>
         </InfoContainer>
         <StyledButtonContainer className={className?.playerButtonsContainer}>
-          <StyledPrevNext onClick={onPrevButtonClicked} className={className?.prevButton}>
+          <StyledPrevNext 
+            $isDisabled={isPrevButtonDisabled}
+            $isHidden={isPrevButtonHidden} 
+            onClick={(e) => {
+              if (isPrevButtonDisabled) return;
+              if (onPrevButtonClicked) onPrevButtonClicked(e)
+            }}
+            className={className?.prevButton}
+          >
             <StyledPrev />
           </StyledPrevNext>
           <StyledPlayPause 
@@ -68,7 +80,15 @@ export default function RadioBottomBarPlayer(props: IRadioBottomBarPorps) {
           >
             {isPlay ?  <Pause /> : <PlayIcon /> }
           </StyledPlayPause>
-          <StyledPrevNext className={className?.prevButton} onClick={onNextButtonClicked}>
+          <StyledPrevNext 
+            $isDisabled={isNextButtonDisabled}
+            $isHidden={isNextButtonHidden}
+            className={className?.prevButton} 
+            onClick={(e) => {
+              if (isNextButtonDisabled) return;
+              if (onNextButtonClicked) onNextButtonClicked(e)
+            }}
+          >
             <Next />
           </StyledPrevNext>
         </StyledButtonContainer>

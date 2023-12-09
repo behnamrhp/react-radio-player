@@ -80,7 +80,6 @@ export const StyledTitle = styled.div`
 `
 
 export const StyledPrev = styled(Next)`
-  ${ButtonColor};
   transform: rotate(180deg);
 `
 
@@ -111,23 +110,26 @@ export const StyledSecondDesc = styled.div`
     width: 100%;
 `
 
-export const StyledButton = css`
+export const StyledButton = css<{$isDisabled?: boolean}>`
   padding: 0;
   background-color: transparent;
   outline: none !important;
   border: none;
   ${ButtonColor};
   transition: all .2s;
+  color: ${({$isDisabled}) => $isDisabled ? disabledColor : primaryColor};
+  
   &:hover{
-    cursor: pointer;
-    ${secondColor};
+    cursor: ${({$isDisabled}) => $isDisabled ? "auto" : "pointer"};
+    ${({$isDisabled}) => $isDisabled ? null : secondColor};
   }
 `
-export const StyledPrevNext = styled.button`
+export const StyledPrevNext = styled.button<{$isHidden?: boolean, $isDisabled?: boolean}>`
 ${StyledButton};
   height: 2rem;
   width: 2rem;
 
+  display: ${({$isHidden}) => $isHidden ? 'none' : 'default'};
   @media (max-width: 648px) {
     height: 1.7rem;
     width: 1.7rem;
@@ -185,7 +187,7 @@ export const VolumeIconContainer = styled.div`
   color: ${({theme}) => theme?.volumeIconColor ? theme.volumeIconColor : primaryColor};
 `
 
-export const VolumeIconMobileButton = styled.button`
+export const VolumeIconMobileButton = styled.button<{$isDisabled?: boolean}>`
 ${StyledButton};
   width: 1.5rem;
   height: 1.5rem;

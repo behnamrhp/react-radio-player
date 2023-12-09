@@ -41,6 +41,10 @@ export default interface IRadioBottomBarPorps {
   image?: ReactNode | string;
   styles?: React.CSSProperties;
   theme?: Partial<Theme>;
+  isPrevButtonHidden?: boolean;
+  isNextButtonHidden?: boolean;
+  isPrevButtonDisabled?: boolean;
+  isNextButtonDisabled?: boolean;
   onErrorCatched?(mediaError: MediaError | null, event: ErrorEvent): void;
   onNextButtonClicked?(event: React.MouseEvent): void;
   onPrevButtonClicked?(event: React.MouseEvent): void;

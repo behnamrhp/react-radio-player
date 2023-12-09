@@ -34,7 +34,8 @@ function App() {
       }}>
 
         <RadioBottomBarPlayer 
-          streamUrl='http://91.223.70.109:8000/radio.mp3' 
+          streamUrl='http://91.223.70.109:8000/radio.mp3'
+          isPrevButtonDisabled
           title='test title asdf  asg test title asdf  asgtest title asdf  asg test title asdf  asg test title asdf  asg' 
           description='description test title asdf  asg test title asdf test title asdf  asg test title asdf '
           secondDescription='asdf test title asdf  asg test title asdf test title asdf  asg test title asdf'
