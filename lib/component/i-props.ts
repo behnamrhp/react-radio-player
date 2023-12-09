@@ -17,9 +17,9 @@ export type Theme = {
 }
 export default interface IRadioBottomBarPorps {
   streamUrl: string;
-  title: string;
-  description?: string;
-  secondDescription: string;
+  title: ReactNode;
+  description?: ReactNode;
+  secondDescription: ReactNode;
   className?: {
     container?: string;
     infoContainer?: string;
