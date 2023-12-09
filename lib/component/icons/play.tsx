@@ -5,7 +5,7 @@ export default function PlayIcon() {
       xmlns="http://www.w3.org/2000/svg"
       width="75%"
       height="75%"
-      viewBox="-3 0 28 28"
+      viewBox="-5 0 28 28"
     >
       <g fill="none" fillRule="evenodd" stroke="none" strokeWidth="1">
         <g fill="currentColor" transform="translate(-419 -571)">
