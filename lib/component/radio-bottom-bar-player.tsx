@@ -30,7 +30,14 @@ export default function RadioBottomBarPlayer(props: IRadioBottomBarPorps) {
     isPrevButtonDisabled,
   } = props;
 
-  const {isPlay, onClickPlayToggler, onChangeVolume, volume, isDisabled} = useUILogic(streamUrl, onErrorCatched)
+  const {
+    isPlay, 
+    onClickPlayToggler, 
+    onChangeVolume, 
+    volume, 
+    isDisabled,
+    onClickPrevNextHandler,
+  } = useUILogic(streamUrl, onErrorCatched)
   const defaultImage = image || <Music />
 
   return (
@@ -62,6 +69,7 @@ export default function RadioBottomBarPlayer(props: IRadioBottomBarPorps) {
             $isHidden={isPrevButtonHidden} 
             onClick={(e) => {
               if (isPrevButtonDisabled) return;
+              onClickPrevNextHandler()
               if (onPrevButtonClicked) onPrevButtonClicked(e)
             }}
             className={className?.prevButton}
@@ -86,6 +94,7 @@ export default function RadioBottomBarPlayer(props: IRadioBottomBarPorps) {
             className={className?.prevButton} 
             onClick={(e) => {
               if (isNextButtonDisabled) return;
+              onClickPrevNextHandler()
               if (onNextButtonClicked) onNextButtonClicked(e)
             }}
           >

@@ -42,11 +42,16 @@ export const useUILogic = (streamUrl: string, onErrorCatched?: (mediaError: Medi
     setVolume(value)
   }
 
+  const onClickPrevNextHandler = () => {
+    setIsPlay(false)
+  }
+
   return {
     isPlay,
     volume,
     onClickPlayToggler,
     onChangeVolume,
+    onClickPrevNextHandler,
     isDisabled
   }
 }
