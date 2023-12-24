@@ -1,5 +1,8 @@
-import { useEffect, useRef, useState } from "react"
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react"
 
+const playOnLoad = (setIsPlay: Dispatch<SetStateAction<boolean>>) => () => {
+  setIsPlay(true)
+}
 
 export const useUILogic = (streamUrl: string, onErrorCatched?: (mediaError: MediaError | null, event: ErrorEvent) => void) => {
   const [isPlay, setIsPlay] = useState(false);
@@ -10,10 +13,18 @@ export const useUILogic = (streamUrl: string, onErrorCatched?: (mediaError: Medi
   // Change station on changing stream url
   useEffect(() => {
     if (audioRef.current.src === streamUrl) return;
-    audioRef.current.src = streamUrl
-  }, [streamUrl])
+    const savedAudio = audioRef.current
 
-  // clear audio on onmount
+    savedAudio.src = streamUrl
+    const onLoadedDataCallback = playOnLoad(setIsPlay)
+    savedAudio.addEventListener('loadeddata', onLoadedDataCallback)
+
+    return () => {
+      savedAudio.removeEventListener('loadeddata', onLoadedDataCallback)
+    }
+  }, [streamUrl])
+  
+  // clear audio on unmount abd error handled
   useEffect(() => {
     const savedAudio = audioRef.current
     setIsDisabled(false)
