@@ -7,6 +7,12 @@ export const useUILogic = (streamUrl: string, onErrorCatched?: (mediaError: Medi
   const audioRef = useRef(new Audio(streamUrl))
   const [volume, setVolume] = useState(50)
 
+  // Change station on changing stream url
+  useEffect(() => {
+    if (audioRef.current.src === streamUrl) return;
+    audioRef.current.src = streamUrl
+  }, [streamUrl])
+
   // clear audio on onmount
   useEffect(() => {
     const savedAudio = audioRef.current
