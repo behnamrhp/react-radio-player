@@ -1,6 +1,7 @@
-import style from './style.module.css'
+import RadioBottomBarPlayer from "./component/radio-bottom-bar-player";
+import IRadioBottomBarPorps from "./component/i-props";
 
-export function helloAnything(thing: string): string {
-  console.log(style.button);
-  return `Hello ${thing}!`
+export {
+  RadioBottomBarPlayer,
+  type IRadioBottomBarPorps,
 }

@@ -5,23 +5,49 @@ export type Theme = {
   fontFamily: string;
   fontSize: string;
   fontWeight: string;
-  buttonColor: string;
+  buttonsColor: string;
   firstTextColor: string;
   secondTextColor: string;
-  paddingX: string;
-  paddingY: string;
+  padding: string;
   height: number;
+  volumeTrackColor: string;
+  voluemHandleColor: string;
+  volumeRailColor: string;
+  volumeIconColor: string;
 }
 export default interface IRadioBottomBarPorps {
   streamUrl: string;
-  title: string;
-  description?: string;
-  secondDescription: string;
-  className?: string;
+  title: ReactNode;
+  description?: ReactNode;
+  secondDescription: ReactNode;
+  className?: {
+    container?: string;
+    infoContainer?: string;
+    imageContainer?: string;
+    image?: string;
+    textsContainer?: string;
+    title?: string;
+    description?: string;
+    secondDescription?: string;
+    player?: string;
+    playButton?: string;
+    prevButton?: string;
+    nextButton?: string;
+    volumeContainer?: string;
+    volume?: string;
+    volumeIcon?: string;
+    playerButtonsContainer?: string;
+  };
   image?: ReactNode | string;
   styles?: React.CSSProperties;
   theme?: Partial<Theme>;
+  isPrevButtonHidden?: boolean;
+  isNextButtonHidden?: boolean;
+  isPrevButtonDisabled?: boolean;
+  isNextButtonDisabled?: boolean;
+  onErrorCatched?(mediaError: MediaError | null, event: ErrorEvent): void;
   onNextButtonClicked?(event: React.MouseEvent): void;
   onPrevButtonClicked?(event: React.MouseEvent): void;
+  onPlayButtonClicked?(event: React.MouseEvent): void;
   onVolumeSliderChanged?(percentage: number): void;
 }

@@ -4,7 +4,7 @@ import './App.css'
 import RadioBottomBarPlayer from '../lib/component/radio-bottom-bar-player'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [stationUrl, setURl] = useState('https://server5.radio-streams.net:8021/stream/1/')
 
   return (
     <>
@@ -14,14 +14,6 @@ function App() {
         </a>
       </div>
       <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
@@ -30,16 +22,28 @@ function App() {
         bottom: 0,
         zIndex: 100,
         left: 0,
-        width: "97vw",
+        width: "98vw",
       }}>
 
         <RadioBottomBarPlayer 
-          image="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Test-Logo.svg/1200px-Test-Logo.svg.png" 
-          streamUrl='asdf' 
-          title='test title' 
-          description='description'
-          secondDescription='asdf'
+          streamUrl={stationUrl}
+          isPrevButtonDisabled={stationUrl === 'https://server5.radio-streams.net:8021/stream/1/'}
+          isNextButtonDisabled={stationUrl === 'https://onlinetestcase.com/wp-content/uploads/2023/06/100-KB-MP3.mp3'}
+          title='test title asdf  asg test title asdf  asgtest title asdf  asg test title asdf  asg test title asdf  asg' 
+          description='description test title asdf  asg test title asdf test title asdf  asg test title asdf '
+          secondDescription='asdf test title asdf  asg test title asdf test title asdf  asg test title asdf'
+          onErrorCatched={(error) => {
+            console.log('our errrorr is:', error)
+          }}
+          onNextButtonClicked={() => {
+            setURl('https://onlinetestcase.com/wp-content/uploads/2023/06/100-KB-MP3.mp3')
+          }}
+          onPrevButtonClicked={() => {
+            
+            setURl('https://server5.radio-streams.net:8021/stream/1/')
+          }}
         />
+        
       </div>
     </>
   )
