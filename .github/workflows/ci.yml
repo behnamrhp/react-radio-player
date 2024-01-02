@@ -2,7 +2,7 @@ name: CI develop branch
 
 on:
   pull_request:
-    types: [opened, review_requested]
+    types: [opened, review_requested, edited]
     branches: 
       - develop
 
