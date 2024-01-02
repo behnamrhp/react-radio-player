@@ -2,9 +2,13 @@ name: CD main publish
 
 on:
   workflow_run:
-    workflows: [CI]
-    branches: [main]
-    types: [completed]
+    workflows: 
+      - CI
+    branches: 
+      - main
+      - develop
+    types: 
+      - completed
       
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
