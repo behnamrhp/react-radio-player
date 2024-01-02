@@ -1,9 +1,7 @@
 name: CD main publish
 
 on:
-  workflow_run: 
-    types: [completed]
-    workflows: [CI]
+  push: 
     branches: 
       - main
       
@@ -41,7 +39,16 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
+  release:
+    needs: publish
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Tag commit
+        uses: tvdias/github-tagger@v0.0.1
+        with:
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          tag: ${{ needs.publish.outputs.latestVersion }}
 
 
       

@@ -4,7 +4,7 @@ on:
   pull_request:
     types: [opened, review_requested, edited, synchronize]
     branches: 
-      - "*"
+      - "**"
 
 jobs:
   development-ci:
