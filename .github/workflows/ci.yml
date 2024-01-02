@@ -1,0 +1,24 @@
+name: CI develop branch
+
+on:
+  pull_request:
+    types: [opened, review_requested]
+    branches: 
+      - develop
+
+jobs:
+  development-ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab
+
+      - name: install dependencies
+        run: yarn
+
+      - name: linting
+        run: yarn lint
+
+      - name: build
+        run: yarn build
