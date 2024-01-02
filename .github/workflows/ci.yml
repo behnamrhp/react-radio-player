@@ -2,21 +2,19 @@ name: CI develop branch
 
 on:
   pull_request:
-    types: [opened, review_requested, edited]
+    types: [opened, review_requested, edited, synchronize]
     branches: 
       - develop
 
 jobs:
   development-ci:
+    name: development-ci
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab
-
-      - name: Show branch
-        run: echo ${GITHUB_REF#refs/heads/}
-
+ 
       - name: install dependencies
         run: yarn
 
