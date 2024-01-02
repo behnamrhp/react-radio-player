@@ -1,14 +1,9 @@
 name: CD main publish
 
 on:
-  workflow_run:
-    workflows: 
-      - CI
+  push: 
     branches: 
       - main
-      - develop
-    types: 
-      - completed
       
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
@@ -22,8 +17,8 @@ jobs:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
 
-    # outputs:
-    #   latestVersion: echo "${{fromJson(steps.changesets.outputs.publishedPackages)[0].version}}"
+    outputs:
+      latestVersion: echo "${{fromJson(steps.changesets.outputs.publishedPackages)[0].version}}"
 
     steps:
       - name: Checkout code
@@ -44,16 +39,16 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-  # release:
-  #   needs: publish
-  #   runs-on: ubuntu-latest
+  release:
+    needs: publish
+    runs-on: ubuntu-latest
     
-  #   steps:
-  #     - name: Tag commit
-  #       uses: tvdias/github-tagger@v0.0.1
-  #       with:
-  #         repo-token: "${{ secrets.GITHUB_TOKEN }}"
-  #         tag: ${{ needs.publish.outputs.latestVersion }}
+    steps:
+      - name: Tag commit
+        uses: tvdias/github-tagger@v0.0.1
+        with:
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          tag: ${{ needs.publish.outputs.latestVersion }}
 
 
       
