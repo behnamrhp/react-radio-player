@@ -13,6 +13,7 @@
     "build": "tsc --p ./tsconfig-build.json && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "run-version": "changesets",
+    "release": "yarn build && changeset publish",
     "prepublishOnly": "yarn build"
   },
   "sideEffects": [
