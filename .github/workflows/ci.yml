@@ -28,12 +28,15 @@ jobs:
           if [ "${{ steps.get-branch-name.outputs.branch-prefix }}" == "feature" ]
           then
             npm version minor --force --no-git-tag-version
+            echo "Bumping version: minor"
           elif  [ "${{ steps.get-branch-name.outputs.branch-prefix }}" == "fix" ] 
           then
             npm version patch --force --no-git-tag-version
+            echo "Bumping version: patch"
           elif  [ "${{ steps.get-branch-name.outputs.branch-prefix }}" == "change" ] 
           then
             npm version major --force --no-git-tag-version
+            echo "Bumping version: major"
           else
             echo "No version bump needed for this branch as its prefix is ${{ steps.get-branch-name.outputs.branch-prefix }}"
           fi
@@ -41,6 +44,12 @@ jobs:
       - name: install dependencies
         run: yarn
 
+      - name: Commit version change
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add package.json
+          git commit -m "Bump version"
       - name: linting
         run: yarn lint
 
