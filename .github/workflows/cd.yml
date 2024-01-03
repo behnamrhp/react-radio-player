@@ -15,7 +15,7 @@ jobs:
  
   publish:
     runs-on: ubuntu-latest
-
+    
     outputs:
       latestVersion: echo "${{fromJson(steps.changesets.outputs.publishedPackages)[0].version}}"
 
@@ -25,7 +25,7 @@ jobs:
       
       - uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 18
       
       - name: Install dependencies
         run: yarn
@@ -41,7 +41,7 @@ jobs:
   release:
     needs: publish
     runs-on: ubuntu-latest
-    
+  
     steps:
       - name: Tag commit
         uses: tvdias/github-tagger@v0.0.1
