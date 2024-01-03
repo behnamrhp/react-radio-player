@@ -1,12 +1,15 @@
 name: Staging
 
 on:
-  push:
+  pull_request: 
+    types: 
+      - closed
     branches: 
       - develop
 
 jobs:
   bump-version:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     permissions: write-all
   
@@ -15,8 +18,8 @@ jobs:
         uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab
       
       - name: branch name
-        id: get-branch-name
-        run: echo  "branch-prefix=$(echo ${GITHUB_REF} | sed 's/\(^\w\+\)\/.*/\1/')" >> $GITHUB_OUTPUT
+        id: get-branch-nameea
+        run: echo  "branch-prefix=$(echo ${GITHUB_HEAD_REF} | sed 's/\(^\w\+\)\/.*/\1/')" >> $GITHUB_OUTPUT
 
       - name: get prefix
         run: echo ${{steps.get-branch-name.outputs.branch-prefix}}
