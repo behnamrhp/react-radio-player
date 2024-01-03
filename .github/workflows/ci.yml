@@ -50,6 +50,10 @@ jobs:
           git config --local user.name "GitHub Actions"
           git add package.json
           git commit -m "Bump version"
+      - name: Push changes
+        if: success()
+        run: |
+          git push origin HEAD:${{ github.ref }}
       - name: linting
         run: yarn lint
 
