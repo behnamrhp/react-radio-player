@@ -57,7 +57,8 @@ jobs:
           git add package.json
           git commit -m "Bump version ${{ steps.bump.outputs.bumped-version }}"
 
-      
+      - name: show ref
+        run: echo ${{github.ref}}.${{github.head_ref}}
       - name: Push changes
         if: ${{ success() }}
         uses: ad-m/github-push-action@master
