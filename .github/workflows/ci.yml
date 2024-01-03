@@ -46,14 +46,12 @@ jobs:
 
       - name: Commit version change
         run: |
-          git config --local user.email "actions@github.com"
-          git config --local user.name "GitHub Actions"
+          git config --local user.email "$(git log -n 1 --pretty=format:%ae)"
+          git config --local user.name "$(git log -n 1 --pretty=format:%an)"
           git add package.json
           git commit -m "Bump version"
-      - name: Push changes
-        if: success()
-        run: |
-          git push origin HEAD:${{ github.ref }}
+          git push
+
       - name: linting
         run: yarn lint
 
