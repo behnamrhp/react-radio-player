@@ -24,44 +24,45 @@ jobs:
       - name: get prefix
         run: echo ${{steps.get-branch-name.outputs.branch-prefix}}
 
-      # - name: Version Bump
-      #   id: bump
-      #   run: |
-      #     if [ "${{ steps.get-branch-name.outputs.branch-prefix }}" == "feature" ]
-      #     then
-      #       npm version minor --force --no-git-tag-version
-      #       echo "Bumping version: minor"
-      #       echo "bumped-version=minor"
-      #     elif  [ "${{ steps.get-branch-name.outputs.branch-prefix }}" == "fix" ] 
-      #     then
-      #       npm version patch --force --no-git-tag-version
-      #       echo "Bumping version: patch"
-      #       echo "bumped-version=patch"
-      #     elif  [ "${{ steps.get-branch-name.outputs.branch-prefix }}" == "change" ] 
-      #     then
-      #       npm version major --force --no-git-tag-version
-      #       echo "Bumping version: major"
-      #       echo "bumped-version=major"
-      #     else
-      #       echo "No version bump needed for this branch as its prefix is ${{ steps.get-branch-name.outputs.branch-prefix }}"
-      #       echo "bumped-version=null"
-      #     fi
+      - name: Version Bump
+        id: bump
+        run: |
+          if [ "${{ steps.get-branch-name.outputs.branch-prefix }}" == "feature" ]
+          then
+            npm version minor --force --no-git-tag-version
+            echo "Bumping version: minor"
+            echo "bumped-version=minor"
+          elif  [ "${{ steps.get-branch-name.outputs.branch-prefix }}" == "fix" ] 
+          then
+            npm version patch --force --no-git-tag-version
+            echo "Bumping version: patch"
+            echo "bumped-version=patch"
+          elif  [ "${{ steps.get-branch-name.outputs.branch-prefix }}" == "change" ] 
+          then
+            npm version major --force --no-git-tag-version
+            echo "Bumping version: major"
+            echo "bumped-version=major"
+          else
+            echo "No version bump needed for this branch as its prefix is ${{ steps.get-branch-name.outputs.branch-prefix }}"
+            echo "bumped-version=null"
+          fi
 
       
 
-      # - name: Commit version change
-      #   if: steps.bump.outputs.bumped-version != 'null' 
-      #   run: |
-      #     git config --local user.email "$(git log -n 1 --pretty=format:%ae)"
-      #     git config --local user.name "$(git log -n 1 --pretty=format:%an)"
-      #     git add package.json
-      #     git commit -m "Bump version ${{ steps.bump.outputs.bumped-version }}"
+      - name: Commit version change
+        if: steps.bump.outputs.bumped-version != 'null' 
+        run: |
+          git config --local user.email "$(git log -n 1 --pretty=format:%ae)"
+          git config --local user.name "$(git log -n 1 --pretty=format:%an)"
+          git add package.json
+          git commit -m "Bump version ${{ steps.bump.outputs.bumped-version }}"
 
-      
-      # - name: Push changes
-      #   if: ${{ success() }}
-      #   uses: ad-m/github-push-action@master
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     branch: ${{ github.ref }}
+      - name: show ref
+        run: echo ${{github.ref}}.${{github.head_ref}}
+      - name: Push changes
+        if: ${{ success() }}
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
       
