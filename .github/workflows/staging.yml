@@ -18,8 +18,8 @@ jobs:
         id: get-branch-name
         run: echo  "branch-prefix=$(echo ${GITHUB_HEAD_REF} | sed 's/\(^\w\+\)\/.*/\1/')" >> $GITHUB_OUTPUT
 
-      # - name: get prefix
-      #   run: echo ${{steps.get-branch-name.outputs.branch-prefix}}
+      - name: get prefix
+        run: echo ${{steps.get-branch-name.outputs.branch-prefix}}
 
       # - name: Version Bump
       #   id: bump
