@@ -48,7 +48,7 @@ jobs:
           fi
 
       - name: Commit version change
-        if: steps.bump.outputs.bumped-version != 'null' 
+        if: steps.bump.outputs.bumped-version != null 
         run: |
           git config --local user.email "$(git log -n 1 --pretty=format:%ae)"
           git config --local user.name "$(git log -n 1 --pretty=format:%an)"
