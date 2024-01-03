@@ -25,13 +25,13 @@ jobs:
 
       - name: Version Bump
         run: |
-          if [ "${{ steps.get-branch-name.outputs.branch-prefix }}" -eq "feature" ]
+          if [ "${{ steps.get-branch-name.outputs.branch-prefix }}" == "feature" ]
           then
             npm version minor --force --no-git-tag-version
-          elif  [ "${{ steps.get-branch-name.outputs.branch-prefix }}" -eq "fix" ] 
+          elif  [ "${{ steps.get-branch-name.outputs.branch-prefix }}" == "fix" ] 
           then
             npm version patch --force --no-git-tag-version
-          elif  [ "${{ steps.get-branch-name.outputs.branch-prefix }}" -eq "change" ] 
+          elif  [ "${{ steps.get-branch-name.outputs.branch-prefix }}" == "change" ] 
           then
             npm version major --force --no-git-tag-version
           else
