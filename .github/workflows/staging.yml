@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab
       
       - name: branch name
-        id: get-branch-nameea
+        id: get-branch-name
         run: echo  "branch-prefix=$(echo ${GITHUB_HEAD_REF} | sed 's/\(^\w\+\)\/.*/\1/')" >> $GITHUB_OUTPUT
 
       - name: get prefix
