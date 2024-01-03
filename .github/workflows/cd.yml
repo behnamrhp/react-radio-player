@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     
     outputs:
-      latestVersion: echo "${{fromJson(steps.changesets.outputs.publishedPackages)[0].version}}"
+      npmVersion: ${{ steps.get-version.outputs.version }}
 
     steps:
       - name: Checkout code
@@ -27,17 +27,23 @@ jobs:
         with:
           node-version: 18
       
+      - name: Get npm version
+        id: get-version
+        uses: beaconbrigade/package-json-version@v0.3
+        with:
+          path: .
+      
+      - name: Print the version
+        run: echo "The version was ${{ steps.get-version.outputs.version }}"
+
       - name: Install dependencies
         run: yarn
       
-      - name: Make Versioning and Publish
-        id: changesets
-        uses: changesets/action@v1
+      - name: NPM Publish
+        uses: JS-DevTools/npm-publish@v1
         with:
-          publish: yarn release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          token: ${{ secrets.NPM_TOKEN }}
+
   release:
     needs: publish
     runs-on: ubuntu-latest
@@ -47,7 +53,7 @@ jobs:
         uses: tvdias/github-tagger@v0.0.1
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
-          tag: ${{ needs.publish.outputs.latestVersion }}
+          tag: ${{ needs.publish.outputs.npmVersion }}
 
 
       
