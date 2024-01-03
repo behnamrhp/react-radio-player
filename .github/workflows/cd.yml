@@ -15,7 +15,7 @@ jobs:
  
   publish:
     runs-on: ubuntu-latest
-
+    
     outputs:
       latestVersion: echo "${{fromJson(steps.changesets.outputs.publishedPackages)[0].version}}"
 
@@ -41,7 +41,7 @@ jobs:
   release:
     needs: publish
     runs-on: ubuntu-latest
-    
+  
     steps:
       - name: Tag commit
         uses: tvdias/github-tagger@v0.0.1
