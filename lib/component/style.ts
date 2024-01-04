@@ -222,7 +222,7 @@ const styledSliderCss = css`
   }
 `
 
-export const StyledSlider = styled(Slider)`
+export const StyledSlider: typeof Slider = styled(Slider)`
   ${styledSliderCss};
   @media (max-width: 648px) {
     display: none;

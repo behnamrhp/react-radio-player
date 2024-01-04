@@ -5,12 +5,19 @@ import { fileURLToPath } from 'node:url'
 import { glob } from 'glob'
 import dts from 'vite-plugin-dts'
 import { libInjectCss } from 'vite-plugin-lib-inject-css'
+import {  visualizer } from "rollup-plugin-visualizer";
 
 export default defineConfig({
   plugins: [
     react(),
     libInjectCss(),
     dts({ include: ['lib'] }),
+    visualizer({
+      template: "treemap",
+      gzipSize: true,
+      brotliSize: true,
+      filename: "analyse.html",
+    })
   ],
   build: {
     copyPublicDir: false,
