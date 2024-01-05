@@ -28,14 +28,19 @@ global.Audio = vitest.fn().mockImplementation(() => ({
 describe("UI Logics", () => {
   const callVM = (
     streamUrl: string,
-    onErrorCatched?: (mediaError: MediaError | null, event: ErrorEvent) => void,
-  ) => renderHook(() => useUILogic(streamUrl, onErrorCatched));
+    configs?: {
+      onErrorCatched?: (
+        mediaError: MediaError | null,
+        event: ErrorEvent,
+      ) => void;
+      onLoadedStreamHandler?: () => void;
+    },
+  ) => renderHook(() => useUILogic(streamUrl, configs));
   describe("Audio Ref", () => {
     describe("Happy Path", () => {
       it("Should return correct stream url on passing stream url", () => {
         // ! Act
         const vm = callVM(fakedStreamUrl);
-        console.log(vm.result.current.isPlay);
         // ? Assert
         expect(vm.result.current.audioRef.src.trim()).toEqual(fakedStreamUrl);
       });
@@ -78,6 +83,27 @@ describe("UI Logics", () => {
         vm.result.current.onClickPrevNextHandler();
         // ? Assert
         expect(vm.result.current.isPlay).toEqual(false);
+      });
+
+      it("Should set volume 50 on default", () => {
+        // ! Act
+        const vm = callVM(fakedStreamUrl);
+        // ? Assert
+        expect(vm.result.current.volume).toEqual(50);
+      });
+
+      it("Should call on load data correct with event listener", () => {
+        // * Arrange
+        const mockedOnLoadedStream = vitest.fn();
+        // ! Act
+        callVM(fakedStreamUrl, {
+          onLoadedStreamHandler: mockedOnLoadedStream,
+        });
+        // ? Assert
+        expect(mockedAddEventListener).toHaveBeenCalledWith(
+          "loadeddata",
+          mockedOnLoadedStream,
+        );
       });
     });
   });

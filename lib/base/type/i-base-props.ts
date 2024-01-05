@@ -37,4 +37,5 @@ export default interface IBaseProps extends ICommonProps {
   onPrevButtonClicked?(event: React.MouseEvent): void;
   onPlayButtonClicked?(event: React.MouseEvent): void;
   onVolumeSliderChanged?(percentage: number): void;
+  onLoadedStreamHandler?(): void;
 }

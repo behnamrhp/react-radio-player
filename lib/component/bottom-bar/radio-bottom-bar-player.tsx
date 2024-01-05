@@ -30,6 +30,7 @@ export default function RadioBottomBarPlayer(props: IRadioBottomBarPorps) {
     onPrevButtonClicked,
     onVolumeSliderChanged,
     onPlayButtonClicked,
+    onLoadedStreamHandler,
     onErrorCatched,
     theme,
     isNextButtonHidden,
@@ -46,7 +47,10 @@ export default function RadioBottomBarPlayer(props: IRadioBottomBarPorps) {
     volume,
     isDisabled,
     onClickPrevNextHandler,
-  } = useUILogic(streamUrl, onErrorCatched);
+  } = useUILogic(streamUrl, {
+    onErrorCatched,
+    onLoadedStreamHandler,
+  });
 
   return (
     <ThemeProvider theme={theme || {}}>

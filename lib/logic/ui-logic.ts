@@ -2,12 +2,22 @@ import { useEffect, useRef, useState } from "react";
 
 export const useUILogic = (
   streamUrl: string,
-  onErrorCatched?: (mediaError: MediaError | null, event: ErrorEvent) => void,
+  configs?: {
+    onErrorCatched?: (mediaError: MediaError | null, event: ErrorEvent) => void;
+    onLoadedStreamHandler?: () => void;
+  },
 ) => {
+  const { onErrorCatched, onLoadedStreamHandler } = configs || {};
   const [isPlay, setIsPlay] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
   const audioRef = useRef(new Audio(streamUrl));
-  const [volume, setVolume] = useState(50);
+  const defaultVolumePercentage = 50;
+  const [volume, setVolume] = useState(defaultVolumePercentage);
+
+  useLoadedStreamSideEffect({
+    audioRef,
+    onLoadedStreamHandler,
+  });
 
   useChangeStationStreamUrlSideEffect({
     audioRef,
@@ -53,6 +63,17 @@ export const useUILogic = (
     isDisabled,
     audioRef: audioRef.current,
   };
+};
+
+const useLoadedStreamSideEffect = (props: {
+  audioRef: React.MutableRefObject<HTMLAudioElement>;
+  onLoadedStreamHandler?: () => void;
+}) => {
+  const { audioRef, onLoadedStreamHandler } = props;
+  useEffect(() => {
+    if (!onLoadedStreamHandler) return;
+    audioRef.current.addEventListener("loadeddata", onLoadedStreamHandler);
+  }, [audioRef, onLoadedStreamHandler]);
 };
 
 /**
