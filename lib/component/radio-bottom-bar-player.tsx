@@ -9,12 +9,13 @@ import Volume from "./children/Volume";
 import Music from "./icons/music";
 import { ThemeProvider } from "styled-components";
 import 'rc-slider/assets/index.css';
+import WithThemeProvider from "../base/component/with-theme-provider/with-theme-provider";
 
-export default function RadioBottomBarPlayer(props: IRadioBottomBarPorps) {
+function RadioBottomBarPlayer(props: IRadioBottomBarPorps) {
   const { 
     streamUrl, 
-    title, 
-    className, 
+    titleChild, 
+    customClassName, 
     description, 
     secondDescription,
     image, 
@@ -28,6 +29,7 @@ export default function RadioBottomBarPlayer(props: IRadioBottomBarPorps) {
     isPrevButtonHidden,
     isNextButtonDisabled,
     isPrevButtonDisabled,
+    ...restProps
   } = props;
 
   const {
@@ -42,28 +44,28 @@ export default function RadioBottomBarPlayer(props: IRadioBottomBarPorps) {
 
   return (
     <ThemeProvider theme={theme || {}}>
-      <StyledContainer className={className?.container}>
-        <InfoContainer className={className?.infoContainer}>
-          <ImageWrapper className={className?.imageContainer}>
+      <StyledContainer className={customClassName?.container} {...restProps}>
+        <InfoContainer className={customClassName?.infoContainer}>
+          <ImageWrapper className={customClassName?.imageContainer}>
             { typeof image === 'string' ? 
-              <StyledImage className={className?.image} src={image} /> 
+              <StyledImage className={customClassName?.image} src={image} /> 
                 : 
               defaultImage 
             }
           </ImageWrapper>
-          <StyledTextContainer className={className?.textsContainer}>
-            <StyledTitle className={className?.title}>
-              {title}
+          <StyledTextContainer className={customClassName?.textsContainer}>
+            <StyledTitle className={customClassName?.title}>
+              {titleChild}
             </StyledTitle>
-            <StyledDescription className={className?.description}>
+            <StyledDescription className={customClassName?.description}>
               {description}
             </StyledDescription>
-            <StyledSecondDesc className={className?.secondDescription}>
+            <StyledSecondDesc className={customClassName?.secondDescription}>
               {secondDescription}
             </StyledSecondDesc>
           </StyledTextContainer>
         </InfoContainer>
-        <StyledButtonContainer className={className?.playerButtonsContainer}>
+        <StyledButtonContainer className={customClassName?.playerButtonsContainer}>
           <StyledPrevNext 
             $isDisabled={isPrevButtonDisabled}
             $isHidden={isPrevButtonHidden} 
@@ -72,13 +74,13 @@ export default function RadioBottomBarPlayer(props: IRadioBottomBarPorps) {
               onClickPrevNextHandler()
               if (onPrevButtonClicked) onPrevButtonClicked(e)
             }}
-            className={className?.prevButton}
+            className={customClassName?.prevButton}
           >
             <StyledPrev />
           </StyledPrevNext>
           <StyledPlayPause 
             
-            className={className?.playButton} 
+            className={customClassName?.playButton} 
             $isDisabled={isDisabled} 
             onClick={(event) => {
               if (isDisabled) return;
@@ -91,7 +93,7 @@ export default function RadioBottomBarPlayer(props: IRadioBottomBarPorps) {
           <StyledPrevNext 
             $isDisabled={isNextButtonDisabled}
             $isHidden={isNextButtonHidden}
-            className={className?.prevButton} 
+            className={customClassName?.prevButton} 
             onClick={(e) => {
               if (isNextButtonDisabled) return;
               onClickPrevNextHandler()
@@ -101,12 +103,12 @@ export default function RadioBottomBarPlayer(props: IRadioBottomBarPorps) {
             <Next />
           </StyledPrevNext>
         </StyledButtonContainer>
-          <StyledVolumeContainer className={className?.volumeContainer}>
-            <VolumeIconContainer className={className?.volumeIcon}>
+          <StyledVolumeContainer className={customClassName?.volumeContainer}>
+            <VolumeIconContainer className={customClassName?.volumeIcon}>
               <Volume volume={volume} />
             </VolumeIconContainer>
             <StyledSlider
-              className={className?.volume}
+              className={customClassName?.volume}
               value={volume}
               onChange={(value) => {
                 onChangeVolume(value as number)
@@ -121,3 +123,5 @@ export default function RadioBottomBarPlayer(props: IRadioBottomBarPorps) {
     </ThemeProvider>
   )
 }
+
+export default WithThemeProvider(RadioBottomBarPlayer) as typeof RadioBottomBarPlayer
