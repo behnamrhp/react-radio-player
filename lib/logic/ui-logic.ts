@@ -1,8 +1,4 @@
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
-
-const playOnLoad = (setIsPlay: Dispatch<SetStateAction<boolean>>) => () => {
-  setIsPlay(true);
-};
+import { useEffect, useRef, useState } from "react";
 
 export const useUILogic = (
   streamUrl: string,
@@ -70,10 +66,14 @@ const useChangeStationStreamUrlSideEffect = (props: {
   const { audioRef, setIsPlay, streamUrl } = props;
   useEffect(() => {
     if (audioRef.current.src === streamUrl) return;
+
     const savedAudio = audioRef.current;
 
     savedAudio.src = streamUrl;
-    const onLoadedDataCallback = playOnLoad(setIsPlay);
+    const onLoadedDataCallback = () => {
+      document.documentElement.click();
+      setIsPlay(true);
+    };
     savedAudio.addEventListener("loadeddata", onLoadedDataCallback);
 
     return () => {

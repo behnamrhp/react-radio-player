@@ -71,12 +71,12 @@ export default function RadioBottomBarPlayer(props: IRadioBottomBarPorps) {
               onClickPrevNextHandler();
               if (onPrevButtonClicked) onPrevButtonClicked(e);
             }}
-            className={customClassName?.prevButton}
+            className={"prev " + (customClassName?.prevButton || "")}
           >
             <StyledPrev />
           </StyledPrevNext>
           <StyledPlayPause
-            className={customClassName?.playButton}
+            className={"play-pause " + (customClassName?.playButton || "")}
             $isDisabled={isDisabled}
             onClick={(event) => {
               if (isDisabled) return;
@@ -89,7 +89,7 @@ export default function RadioBottomBarPlayer(props: IRadioBottomBarPorps) {
           <StyledPrevNext
             $isDisabled={isNextButtonDisabled}
             $isHidden={isNextButtonHidden}
-            className={customClassName?.prevButton}
+            className={"next " + (customClassName?.prevButton || "")}
             onClick={(e) => {
               if (isNextButtonDisabled) return;
               onClickPrevNextHandler();
