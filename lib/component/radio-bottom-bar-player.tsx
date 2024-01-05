@@ -21,7 +21,7 @@ import {
 import "./general.css";
 import { useUILogic } from "../logic/ui-logic";
 import PlayIcon from "../base/component/icons/play";
-import Volume from "./children/Volume";
+import Volume from "../base/component/volume/Volume";
 import Music from "../base/component/icons/music";
 import { ThemeProvider } from "styled-components";
 import "rc-slider/assets/index.css";
