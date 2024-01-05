@@ -4,10 +4,26 @@ import { extname, relative, resolve } from "path";
 import { fileURLToPath } from "node:url";
 import { glob } from "glob";
 import dts from "vite-plugin-dts";
+import type { InlineConfig } from "vitest";
+import type { UserConfig } from "vite";
 import { libInjectCss } from "vite-plugin-lib-inject-css";
 import { visualizer } from "rollup-plugin-visualizer";
 
+interface VitestConfigExport extends UserConfig {
+  test: InlineConfig;
+}
+
 export default defineConfig({
+  test: {
+    globals: true,
+    environment: "jsdom",
+    root: "./lib",
+    coverage: {
+      provider: "v8",
+      reporter: ["lcov", "clover"],
+      reportsDirectory: "../coverage",
+    },
+  },
   plugins: [
     react(),
     libInjectCss(),
@@ -43,4 +59,4 @@ export default defineConfig({
       },
     },
   },
-});
+}) as unknown as VitestConfigExport;

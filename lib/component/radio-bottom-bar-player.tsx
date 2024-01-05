@@ -9,7 +9,7 @@ import {
   StyledPrev,
   StyledPrevNext,
 } from "./style";
-import "./general.css";
+import "../base/style/general.css";
 import { useUILogic } from "../logic/ui-logic";
 import PlayIcon from "../base/component/icons/play";
 import { ThemeProvider } from "styled-components";

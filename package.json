@@ -14,6 +14,7 @@
     "lint": "eslint . --fix --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "run-version": "changesets",
     "release": "yarn build && changeset publish",
+    "test": "vitest",
     "prepublishOnly": "yarn build"
   },
   "sideEffects": [
@@ -24,6 +25,8 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.3.1",
+    "@testing-library/react-hooks": "^8.0.1",
     "@types/node": "^20.10.3",
     "@types/rc-slider": "^9.3.1",
     "@types/react": "^18.2.37",
@@ -37,6 +40,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.4",
     "glob": "^10.3.10",
+    "jsdom": "^23.0.1",
     "prettier": "^3.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -45,7 +49,8 @@
     "typescript": "^5.2.2",
     "vite": "^5.0.0",
     "vite-plugin-dts": "^3.6.4",
-    "vite-plugin-lib-inject-css": "^1.3.0"
+    "vite-plugin-lib-inject-css": "^1.3.0",
+    "vitest": "^1.1.3"
   },
   "dependencies": {
     "rc-slider": "^10.5.0"
