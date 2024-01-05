@@ -6,15 +6,12 @@ import {
   InfoContainer,
   StyledButtonContainer,
   StyledContainer,
-  StyledDescription,
   StyledImage,
   StyledPlayPause,
   StyledPrev,
   StyledPrevNext,
-  StyledSecondDesc,
   StyledSlider,
   StyledTextContainer,
-  StyledTitle,
   StyledVolumeContainer,
   VolumeIconContainer,
 } from "./style";
@@ -25,6 +22,11 @@ import Volume from "../base/component/volume/Volume";
 import Music from "../base/component/icons/music";
 import { ThemeProvider } from "styled-components";
 import "rc-slider/assets/index.css";
+import {
+  StyledDescription,
+  StyledSecondDesc,
+  StyledTitle,
+} from "../base/style/generic-styles";
 
 export default function RadioBottomBarPlayer(props: IRadioBottomBarPorps) {
   const {
