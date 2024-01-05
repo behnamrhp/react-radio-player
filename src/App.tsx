@@ -1,7 +1,7 @@
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
-import RadioBottomBarPlayer from "../lib/component/radio-bottom-bar-player";
+import RadioBottomBarPlayer from "../lib/component/bottom-bar/radio-bottom-bar-player";
 
 function App() {
   const [stationUrl, setURl] = useState(

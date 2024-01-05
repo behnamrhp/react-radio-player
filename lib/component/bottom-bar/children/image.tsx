@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
-import Music from "../../base/component/icons/music";
-import IBaseProps from "../../base/type/i-base-props";
+import Music from "../../../base/component/icons/music";
+import IBaseProps from "../../../base/type/i-base-props";
 import { ImageWrapper, StyledImage } from "../style";
 
 interface IImage {

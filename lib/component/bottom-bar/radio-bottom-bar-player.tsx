@@ -1,6 +1,6 @@
 import IRadioBottomBarPorps from "./i-props";
-import Next from "../base/component/icons/next";
-import Pause from "../base/component/icons/pause";
+import Next from "../../base/component/icons/next";
+import Pause from "../../base/component/icons/pause";
 import {
   InfoContainer,
   StyledButtonContainer,
@@ -10,13 +10,13 @@ import {
   StyledPrevNext,
 } from "./style";
 import "../base/style/general.css";
-import { useUILogic } from "../logic/ui-logic";
-import PlayIcon from "../base/component/icons/play";
+import { useUILogic } from "../../logic/ui-logic";
+import PlayIcon from "../../base/component/icons/play";
 import { ThemeProvider } from "styled-components";
 import "rc-slider/assets/index.css";
 import Image from "./children/image";
 import Information from "./children/information";
-import VolumeController from "../base/component/volume-controller/volume-controller";
+import VolumeController from "../../base/component/volume-controller/volume-controller";
 
 export default function RadioBottomBarPlayer(props: IRadioBottomBarPorps) {
   const {

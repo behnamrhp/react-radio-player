@@ -2,7 +2,7 @@ import {
   StyledSlider,
   StyledVolumeContainer,
   VolumeIconContainer,
-} from "../../../component/style";
+} from "../../../component/bottom-bar/style";
 import Volume from "../volume/Volume";
 import IBaseProps from "../../type/i-base-props";
 

@@ -1,11 +1,11 @@
 import { ReactNode } from "react";
 import { StyledTextContainer } from "../style";
-import IBaseProps from "../../base/type/i-base-props";
+import IBaseProps from "../../../base/type/i-base-props";
 import {
   StyledDescription,
   StyledSecondDesc,
   StyledTitle,
-} from "../../base/style/generic-styles";
+} from "../../../base/style/generic-styles";
 
 interface IInformation {
   customClassName: IBaseProps["customClassName"];

@@ -1,13 +1,13 @@
 import styled, { css } from "styled-components";
-import Next from "../base/component/icons/next";
+import Next from "../../base/component/icons/next";
 import Slider from "rc-slider";
 import { type RadioBottomBarTheme } from "./i-props";
-import defaultBaseTheme from "../base/theme/default-theme";
+import defaultBaseTheme from "../../base/theme/default-theme";
 import {
   firstColor,
   secondColor,
   styledSliderCss,
-} from "../base/style/generic-styles";
+} from "../../base/style/generic-styles";
 
 export const StyledContainer = styled.div`
   display: flex;
