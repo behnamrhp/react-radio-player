@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import Next from "./icons/next";
+import Next from "../base/component/icons/next";
 import Slider from "rc-slider";
 import { type RadioBottomBarTheme } from "./i-props";
 import defaultBaseTheme from "../base/theme/default-theme";

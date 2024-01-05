@@ -1,6 +1,6 @@
 import IRadioBottomBarPorps from "./i-props";
-import Next from "./icons/next";
-import Pause from "./icons/pause";
+import Next from "../base/component/icons/next";
+import Pause from "../base/component/icons/pause";
 import {
   ImageWrapper,
   InfoContainer,
@@ -20,9 +20,9 @@ import {
 } from "./style";
 import "./general.css";
 import { useUILogic } from "../logic/ui-logic";
-import PlayIcon from "./icons/play";
+import PlayIcon from "../base/component/icons/play";
 import Volume from "./children/Volume";
-import Music from "./icons/music";
+import Music from "../base/component/icons/music";
 import { ThemeProvider } from "styled-components";
 import "rc-slider/assets/index.css";
 
@@ -55,6 +55,7 @@ export default function RadioBottomBarPlayer(props: IRadioBottomBarPorps) {
     isDisabled,
     onClickPrevNextHandler,
   } = useUILogic(streamUrl, onErrorCatched);
+
   const defaultImage = image || <Music />;
 
   return (

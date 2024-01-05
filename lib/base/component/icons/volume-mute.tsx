@@ -1,4 +1,3 @@
-
 export default function VolumeMute() {
   return (
     <svg
