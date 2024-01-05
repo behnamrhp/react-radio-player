@@ -15,7 +15,9 @@
     "run-version": "changesets",
     "release": "yarn build && changeset publish",
     "test": "vitest",
-    "prepublishOnly": "yarn build"
+    "prepublishOnly": "yarn build",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "sideEffects": [
     "**/*.css"
@@ -26,6 +28,14 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^8.3.1",
+    "@storybook/addon-essentials": "7.6.7",
+    "@storybook/addon-interactions": "7.6.7",
+    "@storybook/addon-links": "7.6.7",
+    "@storybook/addon-onboarding": "1.0.10",
+    "@storybook/blocks": "7.6.7",
+    "@storybook/react": "7.6.7",
+    "@storybook/react-vite": "7.6.7",
+    "@storybook/test": "7.6.7",
     "@testing-library/react-hooks": "^8.0.1",
     "@types/node": "^20.10.3",
     "@types/rc-slider": "^9.3.1",
@@ -39,12 +49,14 @@
     "eslint-plugin-prettier": "^5.1.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.4",
+    "eslint-plugin-storybook": "^0.6.15",
     "glob": "^10.3.10",
     "jsdom": "^23.0.1",
     "prettier": "^3.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rollup-plugin-visualizer": "^5.12.0",
+    "storybook": "7.6.7",
     "styled-components": "^6.1.1",
     "typescript": "^5.2.2",
     "vite": "^5.0.0",
@@ -56,6 +68,7 @@
     "rc-slider": "^10.5.0"
   },
   "resolutions": {
-    "styled-components": "^5"
+    "styled-components": "^5",
+    "jackspeak": "2.1.1"
   }
 }
