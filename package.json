@@ -16,8 +16,7 @@
     "prepublishOnly": "yarn build",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "predeploy": "yarn build-storybook",
-    "deploy": "gh-pages -d storybook-static"
+    "predeploy": "yarn build-storybook"
   },
   "sideEffects": [
     "**/*.css"
