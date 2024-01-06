@@ -1,7 +1,4 @@
-import RadioBottomBarPlayer from "./component/radio-bottom-bar-player";
-import IRadioBottomBarPorps from "./component/i-props";
+import RadioBottomBarPlayer from "./component/bottom-bar/radio-bottom-bar-player";
+import IRadioBottomBarPorps from "./component/bottom-bar/i-props";
 
-export {
-  RadioBottomBarPlayer,
-  type IRadioBottomBarPorps,
-}
+export { RadioBottomBarPlayer, type IRadioBottomBarPorps };

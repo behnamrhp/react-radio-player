@@ -1,26 +1,13 @@
 import { ReactNode } from "react";
+import IBaseTheme from "./i-base-theme";
+import ICommonProps from "./i-common-props";
 
-export type Theme = {
-  backgroundColor: string;
-  fontFamily: string;
-  fontSize: string;
-  fontWeight: string;
-  buttonsColor: string;
-  firstTextColor: string;
-  secondTextColor: string;
-  padding: string;
-  height: number;
-  volumeTrackColor: string;
-  voluemHandleColor: string;
-  volumeRailColor: string;
-  volumeIconColor: string;
-}
-export default interface IRadioBottomBarPorps {
+export default interface IBaseProps extends ICommonProps {
   streamUrl: string;
-  title: ReactNode;
+  titleChild: ReactNode;
   description?: ReactNode;
   secondDescription: ReactNode;
-  className?: {
+  customClassName?: {
     container?: string;
     infoContainer?: string;
     imageContainer?: string;
@@ -40,7 +27,7 @@ export default interface IRadioBottomBarPorps {
   };
   image?: ReactNode | string;
   styles?: React.CSSProperties;
-  theme?: Partial<Theme>;
+  theme?: Partial<IBaseTheme>;
   isPrevButtonHidden?: boolean;
   isNextButtonHidden?: boolean;
   isPrevButtonDisabled?: boolean;
@@ -50,4 +37,5 @@ export default interface IRadioBottomBarPorps {
   onPrevButtonClicked?(event: React.MouseEvent): void;
   onPlayButtonClicked?(event: React.MouseEvent): void;
   onVolumeSliderChanged?(percentage: number): void;
+  onLoadedStreamHandler?(): void;
 }
