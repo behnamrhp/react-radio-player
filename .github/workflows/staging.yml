@@ -49,6 +49,7 @@ jobs:
       
       - name: Commit version change
         if: ${{steps.bump.outputs.bumped-version != null }}
+        continue-on-error: true
         run: |
           git config --local user.email "$(git log -n 1 --pretty=format:%ae)"
           git config --local user.name "$(git log -n 1 --pretty=format:%an)"
@@ -56,7 +57,7 @@ jobs:
           git commit -m "Bump version ${{ steps.bump.outputs.bumped-version }}"
 
       - name: Push changes
-        if: steps.bump.outputs.bumped-version != null 
+        if: ${{ success() }} 
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
