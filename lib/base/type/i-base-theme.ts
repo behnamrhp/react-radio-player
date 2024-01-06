@@ -9,6 +9,7 @@ export default interface IBaseTheme {
   hoverColor: string;
   titleFontWeight: string;
   descriptionFontWeight: string;
+  secondDescriptionFontWeight: string;
   buttonsColor: string;
   firstTextColor: string;
   secondTextColor: string;

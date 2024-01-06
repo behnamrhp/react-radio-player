@@ -12,6 +12,7 @@ const defaultBaseTheme: IBaseTheme = {
   secondDescriptionFontSize: "1rem",
   titleFontWeight: "normal",
   descriptionFontWeight: "normal",
+  secondDescriptionFontWeight: "normal",
   buttonsColor: "#f0f0f0",
   firstTextColor: "#f0f0f0",
   secondTextColor: "#9595A3",

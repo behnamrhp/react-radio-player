@@ -60,6 +60,10 @@ export const StyledTitle = styled.div`
   ${firstColor}
   font-size: ${({ theme }) =>
     theme.TitleFontSize ? theme.TitleFontSize : defaultBaseTheme.TitleFontSize};
+  font-weight: ${({ theme }) =>
+    theme.titleFontWeight
+      ? theme.titleFontWeight
+      : defaultBaseTheme.titleFontWeight};
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -72,6 +76,10 @@ export const StyledSecondDesc = styled.div`
     theme.secondDescriptionFontSize
       ? theme.secondDescriptionFontSize
       : defaultBaseTheme.secondDescriptionFontSize};
+  font-weight: ${({ theme }) =>
+    theme.secondDescriptionFontWeight
+      ? theme.secondDescriptionFontWeight
+      : defaultBaseTheme.secondDescriptionFontWeight};
   margin-top: auto;
   padding-bottom: 5px;
   text-overflow: ellipsis;
@@ -86,6 +94,10 @@ export const StyledDescription = styled.div`
     theme.descriptionFontSize
       ? theme.descriptionFontSize
       : defaultBaseTheme.descriptionFontSize};
+  font-weight: ${({ theme }) =>
+    theme.descriptionFontWeight
+      ? theme.descriptionFontWeight
+      : defaultBaseTheme.descriptionFontWeight};
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -109,7 +121,9 @@ export const StyledButton = css<{ $isDisabled?: boolean }>`
   color: ${({ $isDisabled, theme }) =>
     $isDisabled
       ? theme.disabledColor || defaultBaseTheme.disabledColor
-      : theme.primaryColor || defaultBaseTheme.primaryColor};
+      : theme.buttonsColor ||
+        theme.primaryColor ||
+        defaultBaseTheme.primaryColor};
 
   &:hover {
     color: ${({ $isDisabled, theme }) =>

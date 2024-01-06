@@ -64,6 +64,9 @@ const meta = {
     "theme.descriptionFontWeight": {
       control: "text",
     },
+    "theme.secondDescriptionFontWeight": {
+      control: "text",
+    },
     "theme.buttonsColor": {
       control: "color",
     },
