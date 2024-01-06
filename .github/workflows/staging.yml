@@ -11,7 +11,7 @@ permissions:
   contents: read
   pages: write
   id-token: write
-  
+
 jobs:
   bump-version:
     if: github.event.pull_request.merged == true
@@ -82,18 +82,21 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '18.x'
+      - name: Install dependencies
+        run: yarn
 
-      - name: Show current branch
-        run: git status
-      
-      - uses: bitovi/github-actions-storybook-to-github-pages@v1.0.1
-        id: build-publish
+      - name: Pre Deploy
+        run: yarn predeploy
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
         with:
-          install_command: yarn
-          build_command: yarn build-storybook
-          path: storybook-static
-          checkout: true
+          path: "./storybook-static"
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
       
