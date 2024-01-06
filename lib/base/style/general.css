@@ -54,3 +54,8 @@ input[type=button] {
   opacity: 0.8;
   touch-action: pan-x;
 }
+
+.rc-slider-handle-dragging {
+  box-shadow: unset !important;
+  border-color: #fff !important;
+}
