@@ -48,7 +48,7 @@ jobs:
           fi
       
       - name: show bumped version
-        run: echo ${{steps.bump.outputs.bumped-version != null }} 
+        run: echo ${{steps.bump.outputs.bumped-version }} 
 
       - name: Commit version change
         if: ${{steps.bump.outputs.bumped-version != null }}
