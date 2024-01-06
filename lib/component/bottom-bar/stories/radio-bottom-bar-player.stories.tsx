@@ -4,6 +4,7 @@ import { useState } from "react";
 
 const meta = {
   title: "React-Radio/Bottom Bar",
+  tags: ["autodocs"],
   args: {
     titleChild: "Test Station",
     description: "Basic Testing Description",
@@ -11,14 +12,12 @@ const meta = {
     isPrevButtonDisabled: true,
     secondDescription: "Basic Second Descriptions",
     streamUrl: "https://server5.radio-streams.net:8021/stream/1/",
+    "theme.fontFamily": "inherit",
+    "theme.backgroundColor": undefined,
   },
   argTypes: {
     description: {
       control: "text",
-    },
-    image: {
-      control: "text",
-      description: "Image for the station",
     },
     isNextButtonDisabled: {
       control: "boolean",
@@ -29,21 +28,26 @@ const meta = {
       description: "Disables prev button",
     },
     titleChild: {
-      control: "string",
+      control: "text",
       description: "Main title for station",
     },
     "theme.backgroundColor": {
       control: "color",
     },
     "theme.fontFamily": {
-      control: "radio",
-      options: ["monospace", "cursive", "auto", "fancy"],
+      control: "text",
     },
     "theme.TitleFontSize": {
-      control: "string",
+      control: "text",
+      defaultValue: "1rem",
     },
-    "theme.DescriptionFontSize": {
-      control: "string",
+    "theme.descriptionFontSize": {
+      control: "text",
+      defaultValue: "1rem",
+    },
+    "theme.secondDescriptionFontSize": {
+      control: "text",
+      defaultValue: "1rem",
     },
     "theme.primaryColor": {
       control: "color",
@@ -51,11 +55,14 @@ const meta = {
     "theme.disabledColor": {
       control: "color",
     },
+    "theme.hoverColor": {
+      control: "color",
+    },
     "theme.titleFontWeight": {
-      control: "string",
+      control: "text",
     },
     "theme.descriptionFontWeight": {
-      control: "string",
+      control: "text",
     },
     "theme.buttonsColor": {
       control: "color",
@@ -67,7 +74,7 @@ const meta = {
       control: "color",
     },
     "theme.padding": {
-      control: "string",
+      control: "text",
     },
     "theme.volumeTrackColor": {
       control: "color",
@@ -82,7 +89,7 @@ const meta = {
       control: "color",
     },
     "theme.height": {
-      control: "string",
+      control: "text",
     },
   },
 } satisfies Meta;

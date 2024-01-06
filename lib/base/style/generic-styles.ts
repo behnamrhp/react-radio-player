@@ -7,23 +7,23 @@ export const styledSliderCss = css`
     cursor: pointer;
     transition: all 0.1s;
     border-color: ${({ theme }) =>
-      theme?.voluemHandleColor
-        ? theme.voluemHandleColor
+      theme?.voluemHandleColor || theme.primaryColor
+        ? theme.voluemHandleColor || theme.primaryColor
         : defaultBaseTheme.primaryColor};
   }
 
   & .rc-slider-handle:active {
     border-color: ${({ theme }) =>
-      theme?.voluemHandleColor
-        ? theme.voluemHandleColor
+      theme?.voluemHandleColor || theme.primaryColor
+        ? theme.voluemHandleColor || theme.primaryColor
         : defaultBaseTheme.primaryColor};
   }
 
   & .rc-slider-handle-dragging {
     box-shadow: none;
     border-color: ${({ theme }) =>
-      theme?.voluemHandleColor
-        ? theme.voluemHandleColor
+      theme?.voluemHandleColor || theme.primaryColor
+        ? theme.voluemHandleColor || theme.primaryColor
         : defaultBaseTheme.primaryColor};
   }
 
@@ -36,16 +36,16 @@ export const styledSliderCss = css`
 
   & .rc-slider-track {
     background-color: ${({ theme }) =>
-      theme?.volumeTrackColor
-        ? theme.volumeTrackColor
+      theme?.volumeTrackColor || theme.primaryColor
+        ? theme.volumeTrackColor || theme.primaryColor
         : defaultBaseTheme.primaryColor};
   }
 `;
 
 export const firstColor = css`
   color: ${({ theme }) =>
-    theme?.firstTextColor
-      ? theme.firstTextColor
+    theme?.firstTextColor || theme.primaryColor
+      ? theme.firstTextColor || theme.primaryColor
       : defaultBaseTheme.primaryColor};
 `;
 
@@ -58,6 +58,8 @@ export const secondColor = css`
 
 export const StyledTitle = styled.div`
   ${firstColor}
+  font-size: ${({ theme }) =>
+    theme.TitleFontSize ? theme.TitleFontSize : defaultBaseTheme.TitleFontSize};
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -66,6 +68,10 @@ export const StyledTitle = styled.div`
 
 export const StyledSecondDesc = styled.div`
   ${secondColor};
+  font-size: ${({ theme }) =>
+    theme.secondDescriptionFontSize
+      ? theme.secondDescriptionFontSize
+      : defaultBaseTheme.secondDescriptionFontSize};
   margin-top: auto;
   padding-bottom: 5px;
   text-overflow: ellipsis;
@@ -76,8 +82,40 @@ export const StyledSecondDesc = styled.div`
 
 export const StyledDescription = styled.div`
   ${secondColor};
+  font-size: ${({ theme }) =>
+    theme.descriptionFontSize
+      ? theme.descriptionFontSize
+      : defaultBaseTheme.descriptionFontSize};
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
   width: 100%;
+`;
+
+export const ButtonColor = css`
+  color: ${({ theme }) =>
+    theme?.buttonsColor || theme.primaryColor
+      ? theme.buttonsColor || theme.primaryColor
+      : defaultBaseTheme.primaryColor};
+`;
+
+export const StyledButton = css<{ $isDisabled?: boolean }>`
+  padding: 0;
+  background-color: transparent;
+  outline: none !important;
+  border: none;
+  ${ButtonColor};
+  transition: all 0.2s;
+  color: ${({ $isDisabled, theme }) =>
+    $isDisabled
+      ? theme.disabledColor || defaultBaseTheme.disabledColor
+      : theme.primaryColor || defaultBaseTheme.primaryColor};
+
+  &:hover {
+    color: ${({ $isDisabled, theme }) =>
+      $isDisabled
+        ? theme.disabledColor
+        : theme.hoverColor || defaultBaseTheme.hoverColor};
+    cursor: ${({ $isDisabled }) => ($isDisabled ? "auto" : "pointer")};
+  }
 `;

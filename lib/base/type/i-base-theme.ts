@@ -2,9 +2,11 @@ export default interface IBaseTheme {
   backgroundColor: string;
   fontFamily: string;
   TitleFontSize: string;
-  DescriptionFontSize: string;
+  descriptionFontSize: string;
+  secondDescriptionFontSize: string;
   primaryColor: string;
   disabledColor: string;
+  hoverColor: string;
   titleFontWeight: string;
   descriptionFontWeight: string;
   buttonsColor: string;

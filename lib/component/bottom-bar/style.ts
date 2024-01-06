@@ -1,11 +1,11 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import Next from "../../base/component/icons/next";
 import Slider from "rc-slider";
 import { type RadioBottomBarTheme } from "./i-props";
 import defaultBaseTheme from "../../base/theme/default-theme";
 import {
+  StyledButton,
   firstColor,
-  secondColor,
   styledSliderCss,
 } from "../../base/style/generic-styles";
 
@@ -13,6 +13,8 @@ export const StyledContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-family: ${({ theme }) =>
+    theme.fontFamily ? theme.fontFamily : defaultBaseTheme.fontFamily};
   padding: ${({ theme }) =>
     theme?.padding ? theme.padding : defaultBaseTheme.padding};
   background: ${({ theme }) =>
@@ -64,11 +66,6 @@ export const StyledTextContainer = styled.div`
   width: 50%;
 `;
 
-export const ButtonColor = css`
-  color: ${({ theme }) =>
-    theme?.buttonsColor ? theme.buttonsColor : defaultBaseTheme.primaryColor};
-`;
-
 export const StyledPrev = styled(Next)`
   transform: rotate(180deg);
 `;
@@ -81,23 +78,6 @@ export const StyledButtonContainer = styled.div`
   gap: 1rem;
 `;
 
-export const StyledButton = css<{ $isDisabled?: boolean }>`
-  padding: 0;
-  background-color: transparent;
-  outline: none !important;
-  border: none;
-  ${ButtonColor};
-  transition: all 0.2s;
-  color: ${({ $isDisabled }) =>
-    $isDisabled
-      ? defaultBaseTheme.disabledColor
-      : defaultBaseTheme.primaryColor};
-
-  &:hover {
-    cursor: ${({ $isDisabled }) => ($isDisabled ? "auto" : "pointer")};
-    ${({ $isDisabled }) => ($isDisabled ? null : secondColor)};
-  }
-`;
 export const StyledPrevNext = styled.button<{
   $isHidden?: boolean;
   $isDisabled?: boolean;
@@ -118,13 +98,14 @@ export const StyledPlayPause = styled.button<{
   theme?: Partial<RadioBottomBarTheme>;
 }>`
   ${StyledButton};
-  color: ${(props) =>
-    props.$isDisabled ? defaultBaseTheme.disabledColor : firstColor};
+  color: ${({ $isDisabled, theme }) =>
+    $isDisabled
+      ? theme.disabledColor || defaultBaseTheme.disabledColor
+      : firstColor};
 
   &:hover {
-    color: ${(props) =>
-      props.$isDisabled ? defaultBaseTheme.disabledColor : firstColor};
-    cursor: ${(props) => (props.$isDisabled ? "auto" : "pointer")} !important;
+    cursor: ${({ $isDisabled }) =>
+      $isDisabled ? "auto" : "pointer"} !important;
   }
 
   @media (max-width: 648px) {
@@ -167,8 +148,8 @@ export const VolumeIconContainer = styled.div`
   width: 1.5rem;
   height: 1.5rem;
   color: ${({ theme }) =>
-    theme?.volumeIconColor
-      ? theme.volumeIconColor
+    theme?.volumeIconColor || theme.primaryColor
+      ? theme.volumeIconColor || theme.primaryColor
       : defaultBaseTheme.primaryColor};
 `;
 
@@ -178,8 +159,8 @@ export const VolumeIconMobileButton = styled.button<{ $isDisabled?: boolean }>`
   height: 1.5rem;
   position: relative;
   color: ${({ theme }) =>
-    theme?.volumeIconColor
-      ? theme.volumeIconColor
+    theme?.volumeIconColor || theme.primaryColor
+      ? theme.volumeIconColor || theme.primaryColor
       : defaultBaseTheme.primaryColor};
 `;
 
