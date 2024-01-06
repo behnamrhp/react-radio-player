@@ -6,7 +6,6 @@ import { glob } from "glob";
 import dts from "vite-plugin-dts";
 import type { InlineConfig } from "vitest";
 import type { UserConfig } from "vite";
-import { libInjectCss } from "vite-plugin-lib-inject-css";
 import { visualizer } from "rollup-plugin-visualizer";
 
 interface VitestConfigExport extends UserConfig {
@@ -17,7 +16,7 @@ export default defineConfig({
   test: {
     globals: true,
     environment: "jsdom",
-    root: "./lib",
+    root: "./test",
     coverage: {
       provider: "v8",
       reporter: ["lcov", "clover"],
@@ -26,7 +25,6 @@ export default defineConfig({
   },
   plugins: [
     react(),
-    libInjectCss(),
     dts({ include: ["lib"] }),
     visualizer({
       template: "treemap",

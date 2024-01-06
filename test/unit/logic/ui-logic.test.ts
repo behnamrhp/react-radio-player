@@ -1,5 +1,5 @@
 import { renderHook } from "@testing-library/react-hooks";
-import { useUILogic } from "./ui-logic";
+import { useUILogic } from "../../../lib/logic/ui-logic";
 import { faker } from "@faker-js/faker";
 const delay = async (maxDuration: number) =>
   await new Promise((resolve) => {
