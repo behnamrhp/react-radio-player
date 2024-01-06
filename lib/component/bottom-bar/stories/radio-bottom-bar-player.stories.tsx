@@ -1,11 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import RadioBottomBarPlayer from '../radio-bottom-bar-player';
-import { useState } from 'react';
-
+import type { Meta, StoryObj } from "@storybook/react";
+import RadioBottomBarPlayer from "../radio-bottom-bar-player";
+import { useState } from "react";
 
 const meta = {
-  title: 'React-Radio/Bottom Bar',
-} satisfies Meta;
+  title: "React-Radio/Bottom Bar",
+} satisfies Meta<typeof RadioBottomBarPlayer>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -16,7 +15,8 @@ export const Primary: Story = {
     const [stationUrl, setURl] = useState(
       "https://server5.radio-streams.net:8021/stream/1/",
     );
-    return <div
+    return (
+      <div
         style={{
           position: "fixed",
           bottom: 0,
@@ -50,5 +50,6 @@ export const Primary: Story = {
           }}
         />
       </div>
-  }
+    );
+  },
 };

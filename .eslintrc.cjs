@@ -1,6 +1,16 @@
 module.exports = {
   root: true,
   env: { browser: true, es2020: true },
+  "overrides": [
+    {
+      "files": [
+        "lib/**/*.stories.tsx"
+      ],
+      "rules": {
+        "react-hooks/rules-of-hooks": "off"
+      }
+    }
+  ],
   extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
