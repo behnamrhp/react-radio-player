@@ -11,8 +11,6 @@
   "scripts": {
     "build": "tsc --p ./tsconfig-build.json && vite build",
     "lint": "eslint . --fix --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "run-version": "changesets",
-    "release": "yarn build && changeset publish",
     "test": "vitest",
     "prepublishOnly": "yarn build",
     "storybook": "storybook dev -p 6006",
