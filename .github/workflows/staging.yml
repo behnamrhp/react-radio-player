@@ -48,7 +48,7 @@ jobs:
           fi
       
       - name: Commit version change
-        if: ${{steps.bump.outputs.bumped-version != null }}
+        if: steps.bump.outputs.bumped-version != null
         continue-on-error: true
         run: |
           git config --local user.email "$(git log -n 1 --pretty=format:%ae)"
@@ -57,7 +57,8 @@ jobs:
           git commit -m "Bump version ${{ steps.bump.outputs.bumped-version }}"
 
       - name: Push changes
-        if: ${{ success() }} 
+        if: steps.bump.outputs.bumped-version != null 
+        continue-on-error: true
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -83,11 +84,17 @@ jobs:
         with:
           node-version: '18.x'
 
+      - name: Checkout to develop
+        run: git checkout develop
+
+      - name: Show current branch
+        run: git status
+      
       - uses: bitovi/github-actions-storybook-to-github-pages@v1.0.1
         id: build-publish
         with:
           install_command: yarn
           build_command: yarn build-storybook
           path: storybook-static
-          checkout: false
+          checkout: true
       
