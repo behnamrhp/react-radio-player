@@ -31,17 +31,17 @@ jobs:
           then
             npm version minor --force --no-git-tag-version
             echo "Bumping version: minor"
-            echo "bumped-version=minor"
+            echo "bumped-version=minor" >> $GITHUB_OUTPUT
           elif  [ "${{ steps.get-branch-name.outputs.branch-prefix }}" == "fix" ] 
           then
             npm version patch --force --no-git-tag-version
             echo "Bumping version: patch"
-            echo "bumped-version=patch"
+            echo "bumped-version=patch" >> $GITHUB_OUTPUT
           elif  [ "${{ steps.get-branch-name.outputs.branch-prefix }}" == "change" ] 
           then
             npm version major --force --no-git-tag-version
             echo "Bumping version: major"
-            echo "bumped-version=major"
+            echo "bumped-version=major" >> $GITHUB_OUTPUT
           else
             echo "No version bump needed for this branch as its prefix is ${{ steps.get-branch-name.outputs.branch-prefix }}"
             echo "bumped-version=null"
