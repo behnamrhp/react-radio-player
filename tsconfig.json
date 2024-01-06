@@ -21,6 +21,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "lib"],
+  "include": ["src", "lib", "test/unit/logic/ui-logic.test.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

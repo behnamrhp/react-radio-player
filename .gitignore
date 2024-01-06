@@ -15,6 +15,7 @@ dist
 dist-ssr
 *.local
 react-radio-player*.tgz
+storybook-static
 
 # analyses
 analyse.html
