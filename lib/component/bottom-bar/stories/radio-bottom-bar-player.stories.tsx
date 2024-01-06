@@ -4,17 +4,98 @@ import { useState } from "react";
 
 const meta = {
   title: "React-Radio/Bottom Bar",
-} satisfies Meta<typeof RadioBottomBarPlayer>;
+  args: {
+    titleChild: "Test Station",
+    description: "Basic Testing Description",
+    isNextButtonDisabled: false,
+    isPrevButtonDisabled: true,
+    secondDescription: "Basic Second Descriptions",
+    streamUrl: "https://server5.radio-streams.net:8021/stream/1/",
+  },
+  argTypes: {
+    description: {
+      control: "text",
+    },
+    image: {
+      control: "text",
+      description: "Image for the station",
+    },
+    isNextButtonDisabled: {
+      control: "boolean",
+      description: "Disables next button",
+    },
+    isPrevButtonDisabled: {
+      control: "boolean",
+      description: "Disables prev button",
+    },
+    titleChild: {
+      control: "string",
+      description: "Main title for station",
+    },
+    "theme.backgroundColor": {
+      control: "color",
+    },
+    "theme.fontFamily": {
+      control: "radio",
+      options: ["monospace", "cursive", "auto", "fancy"],
+    },
+    "theme.TitleFontSize": {
+      control: "string",
+    },
+    "theme.DescriptionFontSize": {
+      control: "string",
+    },
+    "theme.primaryColor": {
+      control: "color",
+    },
+    "theme.disabledColor": {
+      control: "color",
+    },
+    "theme.titleFontWeight": {
+      control: "string",
+    },
+    "theme.descriptionFontWeight": {
+      control: "string",
+    },
+    "theme.buttonsColor": {
+      control: "color",
+    },
+    "theme.firstTextColor": {
+      control: "color",
+    },
+    "theme.secondTextColor": {
+      control: "color",
+    },
+    "theme.padding": {
+      control: "string",
+    },
+    "theme.volumeTrackColor": {
+      control: "color",
+    },
+    "theme.voluemHandleColor": {
+      control: "color",
+    },
+    "theme.volumeRailColor": {
+      control: "color",
+    },
+    "theme.volumeIconColor": {
+      control: "color",
+    },
+    "theme.height": {
+      control: "string",
+    },
+  },
+} satisfies Meta;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<Meta>;
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Primary: Story = {
-  render: () => {
-    const [stationUrl, setURl] = useState(
-      "https://server5.radio-streams.net:8021/stream/1/",
-    );
+  render: (props, globalProps) => {
+    const secondTestingAudio =
+      "https://onlinetestcase.com/wp-content/uploads/2023/06/100-KB-MP3.mp3";
+    const [stationUrl, setURl] = useState(props.streamUrl);
     return (
       <div
         style={{
@@ -26,27 +107,13 @@ export const Primary: Story = {
         }}
       >
         <RadioBottomBarPlayer
+          {...globalProps.parsedProps}
           streamUrl={stationUrl}
-          isPrevButtonDisabled={
-            stationUrl === "https://server5.radio-streams.net:8021/stream/1/"
-          }
-          isNextButtonDisabled={
-            stationUrl ===
-            "https://onlinetestcase.com/wp-content/uploads/2023/06/100-KB-MP3.mp3"
-          }
-          titleChild="test title asdf  asg test title asdf  asgtest title asdf  asg test title asdf  asg test title asdf  asg"
-          description="description test title asdf  asg test title asdf test title asdf  asg test title asdf "
-          secondDescription="asdf test title asdf  asg test title asdf test title asdf  asg test title asdf"
-          onErrorCatched={(error) => {
-            console.log("our errrorr is:", error);
-          }}
           onNextButtonClicked={() => {
-            setURl(
-              "https://onlinetestcase.com/wp-content/uploads/2023/06/100-KB-MP3.mp3",
-            );
+            setURl(secondTestingAudio);
           }}
           onPrevButtonClicked={() => {
-            setURl("https://server5.radio-streams.net:8021/stream/1/");
+            setURl(props.streamUrl);
           }}
         />
       </div>
