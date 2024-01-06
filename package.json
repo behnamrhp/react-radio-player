@@ -1,5 +1,5 @@
 {
-  "homepage": "https://behnamrhp.github.io/react-radio-player",
+  "homepage": "http://behnamrhp.github.io/react-radio-player",
   "name": "react-radio-player",
   "private": false,
   "version": "0.3.2",
@@ -16,7 +16,8 @@
     "prepublishOnly": "yarn build",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "predeploy": "yarn build-storybook"
+    "predeploy": "storybook build",
+    "deploy": "gh-pages -d storybook-static"
   },
   "sideEffects": [
     "**/*.css"
