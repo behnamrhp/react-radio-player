@@ -66,18 +66,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab
+      - uses: actions/checkout@v3
 
-      - name: install dependencies
-        run: yarn
-      
-      - name: Pre deploy
-        run: yarn predeploy
-      
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+      - uses: actions/setup-node@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./storybook-static
+          node-version: '16.x'
+
+      - uses: bitovi/github-actions-storybook-to-github-pages@v1.0.1
+        with:
+          install_command: yarn
+          build_command: yarn build-storybook
+          path: storybook-static
+          checkout: false
       
