@@ -44,12 +44,9 @@ jobs:
             echo "bumped-version=major" >> $GITHUB_OUTPUT
           else
             echo "No version bump needed for this branch as its prefix is ${{ steps.get-branch-name.outputs.branch-prefix }}"
-            echo "bumped-version=null"
+            echo "bumped-version=null" >> $GITHUB_OUTPUT
           fi
       
-      - name: show bumped version
-        run: echo ${{steps.bump.outputs.bumped-version }} 
-
       - name: Commit version change
         if: ${{steps.bump.outputs.bumped-version != null }}
         run: |
