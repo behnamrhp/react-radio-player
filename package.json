@@ -9,7 +9,6 @@
     "dist"
   ],
   "scripts": {
-    "dev": "vite",
     "build": "tsc --p ./tsconfig-build.json && vite build",
     "lint": "eslint . --fix --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "run-version": "changesets",
