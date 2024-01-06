@@ -85,5 +85,5 @@ jobs:
           install_command: yarn
           build_command: yarn build-storybook
           path: storybook-static
-          checkout: false
+          checkout: true
       
