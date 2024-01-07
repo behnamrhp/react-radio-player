@@ -1,30 +1,128 @@
-# React + TypeScript + Vite
+<p align="center">
+  <a rel="noopener" target="_blank"><img width="150" height="133" src="./catalogs/logo.svg" alt="MUI Core logo"></a>
+</p>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### A Simple component library for radio player in react
 
-Currently, two official plugins are available:
+## Table of Contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Overview](#overview)
+- [Installation](#installation)
+- [Basic Example](#basic-example)
+- [APIs](#apis)
+  - [Base Props](#base-props)
+  - [Bottom Bar](#bottom-bar)
+- [Contributing]
+- [License]
 
-## Expanding the ESLint configuration
+## Overview
+  This is a simple and light-weight component library to handle radio player in React.js projects.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Installation
 
-- Configure the top-level `parserOptions` property like this:
+```bash
+# npm 
+npm install react-radio-player
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+# yarn
+yarn install react-radio-player
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Basic example
+Usage of this component is so easy you just need to import your desired component, pass title and streamURL, then you're good to go:
+
+```typescript
+import RadioBottomBarPlayer from "../radio-bottom-bar-player";
+
+// ... 
+
+<RadioBottomBarPlayer
+  titleChild="Testing Station title"
+  streamUrl={stationUrl}
+/>
+
+```
+
+## APIs
+
+### Base Props
+| Prop    | type | Descriptions |
+| -------- | ------- | ------- |
+| streamUrl  | string    | URL of radio stream to be played  |
+| titleChild | ReactNode     | Tile to show in component  |
+| description?    | ReactNode    | First description for component    |
+| secondDescription?    | ReactNode    | Second description for the radio    |
+| customClassName?   | Object    | some class names for the parts of components, separately    |
+| image? | ReactNode `or` string | Image related to the radio |
+| styles? | CSSProperties | Inline styles related to the component| 
+| theme? | IBaseTheme | Object related to the theme to change the ui of the component |
+| isPrevButtonHidden? | boolean | Will hide prev button |
+| isNextButtonHidden? | boolean | Will hide next button|
+| isPrevButtonDisabled | boolean | Will disable prev button |
+|isNextButtonDisabled | boolean | Will disable next button |
+| onErrorCatched | (mediaError: MediaError `or` null, event: ErrorEvent): void; | Callback on catch any error of component 
+|onNextButtonClicked | (event: React.MouseEvent): void; | Callback after clicked on next button
+|onPrevButtonClicked | (event: React.MouseEvent): void; | Callback after cliked on prev button
+|onPlayButtonClicked | (event: React.MouseEvent): void; | Callback after clicked on play button
+|onVolumeSliderChanged | (percentage: number): void; | Callback after changed volume
+|onLoadedStreamHandler | (): void; | Callback after load of stream data 
+```typescript 
+type customClassName = {
+    container?: string;
+    infoContainer?: string;
+    imageContainer?: string;
+    image?: string;
+    textsContainer?: string;
+    title?: string;
+    description?: string;
+    secondDescription?: string;
+    player?: string;
+    playButton?: string;
+    prevButton?: string;
+    nextButton?: string;
+    volumeContainer?: string;
+    volume?: string;
+    volumeIcon?: string;
+    playerButtonsContainer?: string;
+  }
+
+interface IBaseTheme {
+  backgroundColor: string;
+  fontFamily: string;
+  TitleFontSize: string;
+  descriptionFontSize: string;
+  secondDescriptionFontSize: string;
+  primaryColor: string;
+  disabledColor: string;
+  hoverColor: string;
+  titleFontWeight: string;
+  descriptionFontWeight: string;
+  secondDescriptionFontWeight: string;
+  buttonsColor: string;
+  firstTextColor: string;
+  secondTextColor: string;
+  padding: string;
+  volumeTrackColor: string;
+  voluemHandleColor: string;
+  volumeRailColor: string;
+  volumeIconColor: string;
+}
+
+```
+
+### Bottom Bar
+Bottom bar component will use all of basic props just for theme it will be like following:
+
+```typescript
+export type RadioBottomBarTheme = IBaseTheme & {
+  height: number;
+};
+```
+
+## Contributing
+
+See the [contributing guide](./catalogs/docs/CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
+
+## License
+
+[MIT](./LICENSE)
