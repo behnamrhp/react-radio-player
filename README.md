@@ -1,5 +1,5 @@
 <p align="center">
-  <a rel="noopener" target="_blank"><img width="150" height="133" src="./catalogs/logo.svg" alt="MUI Core logo"></a>
+  <a rel="noopener" target="_blank"><img width="150" height="133" src="./catalogs/logo.svg" alt="React Radio Player logo"></a>
 </p>
 
 ### A Simple component library for radio player in react
