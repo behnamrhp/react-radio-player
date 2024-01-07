@@ -13,6 +13,7 @@
   - [Base Props](#base-props)
   - [Bottom Bar](#bottom-bar)
 - [Contributing](#contributing)
+- [Try out](#try-out)
 - [License](#license)
 
 ## Overview
@@ -109,6 +110,9 @@ interface IBaseTheme {
 }
 
 ```
+
+### Try Out
+You can watch our staging components in a storybook and work around with it from this [link](https://behnamrhp.github.io/react-radio-player)
 
 ### Bottom Bar
 Bottom bar component will use all of basic props just for theme it will be like following:
