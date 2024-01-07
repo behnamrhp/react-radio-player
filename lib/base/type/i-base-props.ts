@@ -6,7 +6,7 @@ export default interface IBaseProps extends ICommonProps {
   streamUrl: string;
   titleChild: ReactNode;
   description?: ReactNode;
-  secondDescription: ReactNode;
+  secondDescription?: ReactNode;
   customClassName?: {
     container?: string;
     infoContainer?: string;
