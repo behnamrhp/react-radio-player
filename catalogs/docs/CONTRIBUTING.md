@@ -56,6 +56,8 @@ for example:
 ### DOD
 
 - Add Storybook (if you added a component)
+- All Components should have been exported from main (you added component)
 - Add unit test for UI logics (if you added or modified some ui logics)
 - Branch name should be based on our [conventions](#pull-requests)
 - For styles should be used default theme
+- For styling components, all components should be wrapped by theme provider and using styled component for styling

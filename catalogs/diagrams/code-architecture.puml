@@ -1,0 +1,16 @@
+@startuml
+
+class RadioBottomBarPlayer {}
+
+interface IBaseProps {}
+interface ICommonProps {}
+
+RadioBottomBarPlayer --o IBaseProps
+IBaseProps ..|> ICommonProps
+
+RadioBottomBarPlayer --> useUILogic
+
+class client {}
+
+client --> RadioBottomBarPlayer
+@enduml
