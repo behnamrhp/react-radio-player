@@ -12,8 +12,8 @@
 - [APIs](#apis)
   - [Base Props](#base-props)
   - [Bottom Bar](#bottom-bar)
-- [Contributing]
-- [License]
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Overview
   This is a simple and light-weight component library to handle radio player in React.js projects.
