@@ -7,6 +7,11 @@ on:
     branches: 
       - develop
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   bump-version:
     if: github.event.pull_request.merged == true
@@ -31,24 +36,25 @@ jobs:
           then
             npm version minor --force --no-git-tag-version
             echo "Bumping version: minor"
-            echo "bumped-version=minor"
+            echo "bumped-version=minor" >> $GITHUB_OUTPUT
           elif  [ "${{ steps.get-branch-name.outputs.branch-prefix }}" == "fix" ] 
           then
             npm version patch --force --no-git-tag-version
             echo "Bumping version: patch"
-            echo "bumped-version=patch"
+            echo "bumped-version=patch" >> $GITHUB_OUTPUT
           elif  [ "${{ steps.get-branch-name.outputs.branch-prefix }}" == "change" ] 
           then
             npm version major --force --no-git-tag-version
             echo "Bumping version: major"
-            echo "bumped-version=major"
+            echo "bumped-version=major" >> $GITHUB_OUTPUT
           else
             echo "No version bump needed for this branch as its prefix is ${{ steps.get-branch-name.outputs.branch-prefix }}"
-            echo "bumped-version=null"
+            echo "bumped-version=null" >> $GITHUB_OUTPUT
           fi
-
+      
       - name: Commit version change
-        if: steps.bump.outputs.bumped-version != 'null' 
+        if: steps.bump.outputs.bumped-version != null
+        continue-on-error: true
         run: |
           git config --local user.email "$(git log -n 1 --pretty=format:%ae)"
           git config --local user.name "$(git log -n 1 --pretty=format:%an)"
@@ -56,9 +62,41 @@ jobs:
           git commit -m "Bump version ${{ steps.bump.outputs.bumped-version }}"
 
       - name: Push changes
-        if: ${{ success() }}
+        if: steps.bump.outputs.bumped-version != null 
+        continue-on-error: true
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ github.ref }}
+
+  storybook-deploy:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: "pages"
+      cancel-in-progress: false
+
+    environment:
+      name: github-pages
+      url: ${{ steps.build-publish.outputs.page_url }}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Pre Deploy
+        run: yarn predeploy
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: "./storybook-static"
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
       

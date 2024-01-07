@@ -7,10 +7,19 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# node modules
 node_modules
+
+# build
 dist
 dist-ssr
 *.local
+react-radio-player*.tgz
+storybook-static
+
+# analyses
+analyse.html
+vite.config.ts.timestamp*.mjs
 
 # Editor directories and files
 .vscode/*
@@ -22,3 +31,4 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
