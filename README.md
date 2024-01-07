@@ -1,5 +1,5 @@
 <p align="center">
-  <a rel="noopener" target="_blank"><img width="150" height="133" src="./catalogs/logo.svg" alt="MUI Core logo"></a>
+  <a rel="noopener" target="_blank"><img width="150" height="133" src="./catalogs/logo.svg" alt="React Radio Player logo"></a>
 </p>
 
 ### A Simple component library for radio player in react
@@ -13,6 +13,7 @@
   - [Base Props](#base-props)
   - [Bottom Bar](#bottom-bar)
 - [Contributing](#contributing)
+- [Try out](#try-out)
 - [License](#license)
 
 ## Overview
@@ -109,6 +110,9 @@ interface IBaseTheme {
 }
 
 ```
+
+### Try Out
+You can watch our staging components in a storybook and work around with it from this [link](https://behnamrhp.github.io/react-radio-player)
 
 ### Bottom Bar
 Bottom bar component will use all of basic props just for theme it will be like following:
