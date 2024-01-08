@@ -17,8 +17,12 @@ import "rc-slider/assets/index.css";
 import Image from "./children/image";
 import Information from "./children/information";
 import VolumeController from "../../base/component/volume-controller/volume-controller";
+import { ForwardedRef, forwardRef } from "react";
 
-export default function RadioBottomBarPlayer(props: IRadioBottomBarPorps) {
+function RadioBottomBarPlayer(
+  props: IRadioBottomBarPorps,
+  ref: ForwardedRef<HTMLDivElement>,
+) {
   const {
     streamUrl,
     titleChild,
@@ -54,7 +58,11 @@ export default function RadioBottomBarPlayer(props: IRadioBottomBarPorps) {
 
   return (
     <ThemeProvider theme={theme || {}}>
-      <StyledContainer className={customClassName?.container} {...restProps}>
+      <StyledContainer
+        {...restProps}
+        className={customClassName?.container}
+        ref={ref}
+      >
         <InfoContainer className={customClassName?.infoContainer}>
           <Image customClassName={customClassName} image={image} />
           <Information
@@ -113,3 +121,5 @@ export default function RadioBottomBarPlayer(props: IRadioBottomBarPorps) {
     </ThemeProvider>
   );
 }
+
+export default forwardRef(RadioBottomBarPlayer);
