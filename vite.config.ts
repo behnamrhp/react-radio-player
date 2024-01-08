@@ -7,6 +7,7 @@ import dts from "vite-plugin-dts";
 import type { InlineConfig } from "vitest";
 import type { UserConfig } from "vite";
 import { visualizer } from "rollup-plugin-visualizer";
+import { libInjectCss } from "vite-plugin-lib-inject-css";
 
 interface VitestConfigExport extends UserConfig {
   test: InlineConfig;
@@ -25,7 +26,8 @@ export default defineConfig({
   },
   plugins: [
     react(),
-    dts({ include: ["lib"] }),
+    dts({ include: ["lib"], exclude: ["**/*.stories.tsx"] }),
+    libInjectCss(),
     visualizer({
       template: "treemap",
       gzipSize: true,
