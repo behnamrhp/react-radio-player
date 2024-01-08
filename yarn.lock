@@ -2197,7 +2197,7 @@
     process "^0.11.10"
     util "^0.12.4"
 
-"@storybook/builder-vite@7.6.7":
+"@storybook/builder-vite@7.6.7", "@storybook/builder-vite@^7.6.7":
   version "7.6.7"
   resolved "https://registry.yarnpkg.com/@storybook/builder-vite/-/builder-vite-7.6.7.tgz#105dd0158ea85930c890580700f2b988c79cf8ae"
   integrity sha512-Sv+0ROFU9k+mkvIPsPHC0lkKDzBeMpvfO9uFRl1RDSsXBfcPPZKNo5YK7U7fOhesH0BILzurGA+U/aaITMSZ9g==
