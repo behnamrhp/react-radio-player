@@ -26,7 +26,7 @@ export default defineConfig({
   },
   plugins: [
     react(),
-    dts({ include: ["lib"] }),
+    dts({ include: ["lib"], exclude: ["**/*.stories.tsx"] }),
     libInjectCss(),
     visualizer({
       template: "treemap",
