@@ -147,6 +147,7 @@ export const StyledMobileVolumeContainer = styled.div`
 export const VolumeIconContainer = styled.div`
   width: 1.5rem;
   height: 1.5rem;
+  background-color: blue;
   color: ${({ theme }) =>
     theme?.volumeIconColor || theme.primaryColor
       ? theme.volumeIconColor || theme.primaryColor
